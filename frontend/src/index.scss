@@ -1,0 +1,35 @@
+:root {
+  --primary-color: #1d3557;
+  --secondary-color: #f1faee;
+  // --font-color: rgb(161, 161, 161);
+  --tertiary-color: #e63946;
+  --error-color: rgb(167, 17, 17);
+  --border: 2px solid rgba(161, 163, 165, 0.1);
+}
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  // background-color: var(--secondary-color);
+}
+
+.heading__main {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  padding: 1rem 0;
+  font-weight: 400;
+}
+
+.btn {
+  &--primary {
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--secondary-color);
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}

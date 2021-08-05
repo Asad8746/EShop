@@ -1,0 +1,32 @@
+.ratting {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+  &__line {
+    height: 2px;
+    width: 100%;
+    background-color: var(--primary-color);
+  }
+  &__stars {
+    position: absolute;
+    z-index: 3;
+    background-color: white;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    i {
+      color: var(--tertiary-color);
+      font-size: 13px;
+    }
+  }
+  &__total-reviews {
+    color: var(--primary-color);
+    margin-left: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+    letter-spacing: 1px;
+  }
+}

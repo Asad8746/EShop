@@ -1,0 +1,5 @@
+{
+  "mongoUri": "mongodb://localhost/EShop",
+  "secretKey": "secretKey@123",
+  "clientUrl": "http://localhost:3000"
+}

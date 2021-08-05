@@ -1,0 +1,16 @@
+{
+    "extends" : ["eslint:recommended","plugin:react/recommended"],
+    "parserOptions" : {
+        "ecmaVersion": 2019,
+        "ecmaFeatures": {
+            "jsx" : true
+        },
+        "sourceType" : "module"
+    },
+    "rules" : {
+        "react/react-in-jsx-scope":0,
+        "no-unused-vars": 1,
+        "no-undef" : 0
+    },
+    "plugins" : ["react"]
+}

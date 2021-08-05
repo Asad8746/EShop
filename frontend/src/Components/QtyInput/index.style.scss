@@ -1,0 +1,25 @@
+.qty-input {
+  width: 100%;
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+  justify-content: center;
+  &__btn {
+    border: none;
+    padding: 5px 10px;
+    font-size: 19px;
+    margin: 0 5px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: 2px solid var(--primary-color);
+    cursor: pointer;
+  }
+  &__field,
+  &__field:focus {
+    border: 2px solid rgba(224, 224, 224, 0.5);
+    width: 50px;
+    padding: 10px 5px;
+    outline: none;
+    background-color: #fff;
+  }
+}
