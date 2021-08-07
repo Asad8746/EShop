@@ -1,8 +1,8 @@
 .header {
   background-color: var(--primary-color);
-  height: 60px;
+  height: 6rem;
   &-nav {
-    height: 60px;
+    height: 6rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -10,10 +10,10 @@
     &__logo {
       color: var(--secondary-color);
       font-weight: 500;
-      font-size: 18px;
-      letter-spacing: 4px;
+      font-size: 1.8rem;
+      letter-spacing: 0.4rem;
       text-transform: uppercase;
-      padding: 5px 0;
+      padding: 0.5rem 0;
       border-top: 1px solid var(--secondary-color);
       border-bottom: 1px solid var(--secondary-color);
       text-decoration: none;
@@ -26,20 +26,22 @@
       align-items: center;
     }
     &__link {
-      padding: 0px 30px;
       height: 100%;
+      padding: 0px 3rem;
       display: flex;
       justify-content: center;
       align-items: center;
       font-size: 14px;
       color: var(--secondary-color);
       font-weight: 500;
+      position: relative;
+      cursor: pointer;
       a {
         text-decoration: none;
         color: inherit;
       }
       i {
-        margin-right: 8px;
+        margin-right: 0.8rem;
       }
     }
   }

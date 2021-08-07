@@ -1,0 +1,39 @@
+.input {
+  width: 100%;
+  &__label {
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0.8rem 1rem;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    transform: translateY(0);
+    visibility: visible;
+    opacity: 1;
+    color: var(--font-color);
+    transition: all 0.3s ease-out;
+    font-weight: 600;
+    color: var(--font-color);
+  }
+  &__field,
+  &__field:focus {
+    width: 100%;
+    border: 2px solid #f7f7f7;
+    border-radius: 1rem;
+    padding: 1.5rem 1rem;
+    outline: none;
+  }
+  &__field::placeholder {
+    color: var(--font-color);
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  &__field:focus {
+    border: 2px solid var(--primary-color);
+  }
+  &__field:placeholder-shown + &__label {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-3.8rem);
+  }
+}

@@ -1,0 +1,13 @@
+.message {
+  padding: 0.5rem 1rem;
+  text-transform: capitalize;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  &--error {
+    color: rgb(161, 35, 35);
+  }
+  &--success {
+    background-color: var(--success-color);
+  }
+}

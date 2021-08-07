@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
-const joi = require("joi");
+const config = require("config");
 const user_schema = new mongoose.Schema(
   {
     name: {
@@ -31,7 +31,9 @@ const user_schema = new mongoose.Schema(
 );
 
 user_schema.methods.genToken = function () {
-  return jwt.sign({ id: this._id }, "secretKey@123", { expiresIn: "7d" });
+  return jwt.sign({ id: this._id }, config.get("secretKey"), {
+    expiresIn: "7d",
+  });
 };
 
 module.exports = mongoose.model("User", user_schema);

@@ -1,0 +1,11 @@
+.login {
+  &__btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__error-container {
+    text-align: center;
+    padding: 1rem 0;
+  }
+}

@@ -20,7 +20,7 @@ router.post(
     const { email, password } = value;
     const user = await UserModel.findOne({ email: email });
     if (user && (await bcrypt.compare(password, user.password))) {
-      res.header("authorization", user.genToken()).status(201).send({
+      res.header("authorization", user.genToken()).status(200).send({
         id: user._id,
         name: user.name,
         email: user.email,
@@ -47,7 +47,7 @@ router.post(
     let user = await UserModel.findOne({ email });
     if (user) {
       res.status(400);
-      throw new Error("Email is already taken");
+      throw new Error("Email Already Registered");
     }
     user = new UserModel({
       name,
@@ -64,8 +64,19 @@ router.post(
   })
 );
 
-router.get("/", authMiddleware, (req, res) => {
-  res.status(200).send(req.user);
-});
+router.get(
+  "/me",
+  authMiddleware,
+  asyncMiddleware(async (req, res) => {
+    const user_id = req.user;
+    const user = await UserModel.findById(user_id);
+    console.log(user);
+    if (!user) {
+      res.status(404);
+      throw new Error("User not found");
+    }
+    res.status(200).send(user);
+  })
+);
 
 module.exports = router;

@@ -1,8 +1,10 @@
+import { useHistory } from "react-router-dom";
 import { Container, CartItem } from "../../Components";
 import { useSelector } from "react-redux";
 import "./index.style.scss";
 export const CartPage = () => {
   const cart = useSelector((store) => store.cart);
+  const history = useHistory();
   return (
     <Container>
       <div className="cart">
@@ -45,7 +47,14 @@ export const CartPage = () => {
                 padding: "1rem",
               }}
             >
-              <button className="btn--primary">Checkout</button>
+              <button
+                className="btn--primary"
+                onClick={() => {
+                  history.push("/auth?redirect=cart");
+                }}
+              >
+                Checkout
+              </button>
             </div>
           </div>
         </div>

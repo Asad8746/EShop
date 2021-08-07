@@ -1,10 +1,11 @@
 :root {
   --primary-color: #1d3557;
   --secondary-color: #f1faee;
-  // --font-color: rgb(161, 161, 161);
   --tertiary-color: #e63946;
   --error-color: rgb(167, 17, 17);
   --border: 2px solid rgba(161, 163, 165, 0.1);
+  --font-color: #393e41;
+  --success-color: rgb(8, 143, 48);
 }
 html {
   font-size: 62.5%;
@@ -32,4 +33,9 @@ body {
     border-radius: 5px;
     cursor: pointer;
   }
+}
+
+.initial__loader-container {
+  height: 100vh;
+  width: 100vw;
 }

@@ -1,0 +1,103 @@
+.auth {
+  &-container {
+    width: 70%;
+    margin: 0 auto;
+    // background-color: red;
+    display: flex;
+    margin-top: 2rem;
+    height: 60rem;
+    box-shadow: 0 1rem 5rem rgba(0, 0, 0, 0.1);
+    border-radius: 1.5rem;
+    overflow: hidden;
+  }
+
+  &__left {
+    width: 30%;
+    background-color: var(--primary-color);
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  &__nav {
+    position: absolute;
+    right: 0;
+    top: 40%;
+    transform: translateY(-50%);
+    &-radio {
+      display: none;
+    }
+    &-item {
+      color: white;
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+      font-weight: 600;
+      width: 10rem;
+      height: 5rem;
+      display: flex;
+      justify-content: center;
+      cursor: pointer;
+      align-items: center;
+      padding: 2rem 0;
+      transition: all 0.2s ease-out;
+      //   background-color: red;
+    }
+    .active-item {
+      color: var(--primary-color);
+    }
+    .active {
+      border-radius: 80rem 10px 5px 80rem;
+      background-color: white;
+      position: absolute;
+      top: 0;
+      width: 10rem;
+      height: 5rem;
+      z-index: -10;
+      transition: all 0.2s ease-out;
+      &::before {
+        content: "";
+        position: absolute;
+        top: -5rem;
+        right: 0;
+        height: 5rem;
+        width: 5rem;
+        border-bottom-right-radius: 50%;
+        box-shadow: 0 2rem 0 0 white;
+        background: transparent;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -5rem;
+        right: 0;
+        height: 5rem;
+        width: 5rem;
+        border-top-right-radius: 50%;
+        box-shadow: 2rem 0 0 0 white;
+        background: transparent;
+      }
+    }
+    #signup-radio:checked ~ .active {
+      transform: translateY(5rem);
+    }
+    #login-radio:checked ~ .active {
+      transform: translateY(0rem);
+    }
+  }
+  &__right {
+    flex: 1;
+    // background-color: yellow;
+    padding: 0 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__header {
+    color: var(--font-color);
+    font-weight: 400;
+    text-align: center;
+    margin: 2rem 0;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+  }
+}
