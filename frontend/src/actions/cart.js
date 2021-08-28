@@ -3,6 +3,8 @@ import {
   setCartLoading,
   setCartError,
   removeCartItem,
+  saveAddress,
+  savePaymentMethod,
 } from "../reducers/constants";
 import Api from "../Api";
 export const addItem = (id, qty) => {
@@ -37,4 +39,14 @@ export const removeItem = (id) => {
       console.log(err.message);
     }
   };
+};
+
+export const saveAddressAction = (data) => {
+  localStorage.setItem("address", JSON.stringify(data));
+  return { type: saveAddress, payload: data };
+};
+
+export const savePaymentMethodAction = (data) => {
+  localStorage.setItem("paymentMethod", data);
+  return { type: savePaymentMethod, payload: data };
 };

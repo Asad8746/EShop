@@ -5,6 +5,8 @@ import cart from "./cart";
 import user from "./user";
 import login from "./loginForm";
 import signup from "./signUpForm";
+import order from "./order";
+import orders from "./orders";
 export default combineReducers({
   products,
   product,
@@ -12,4 +14,6 @@ export default combineReducers({
   user,
   login,
   signup,
+  order,
+  orders,
 });

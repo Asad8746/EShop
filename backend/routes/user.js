@@ -70,13 +70,41 @@ router.get(
   asyncMiddleware(async (req, res) => {
     const user_id = req.user;
     const user = await UserModel.findById(user_id);
-    console.log(user);
     if (!user) {
       res.status(404);
       throw new Error("User not found");
     }
-    res.status(200).send(user);
+
+    res.status(200).send({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    });
   })
 );
 
+router.patch(
+  "/me",
+  authMiddleware,
+  asyncMiddleware(async (req, res) => {
+    const user_id = req.user;
+    const user = await UserModel.findById(user_id);
+    if (!user) {
+      res.status(404);
+      throw new Error("User not Found");
+    }
+    user.name = req.body.name || user.name;
+    user.password = req.body.password
+      ? await bcrypt.hash(req.body.password, await bcrypt.genSalt())
+      : user.password;
+    const updatedUser = await user.save();
+    res.status(200).send({
+      id: updatedUser.id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  })
+);
 module.exports = router;

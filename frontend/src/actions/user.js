@@ -7,6 +7,11 @@ import {
   setUserLoading,
   setSignupError,
   setSignupLoading,
+  resetCart,
+  resetLogin,
+  resetSignup,
+  resetOrder,
+  resetOrders,
 } from "../reducers/constants";
 
 import returnError from "../utils/error";
@@ -47,8 +52,13 @@ export const checkToken = () => {
 
 export const logout = () => {
   return (dispatch) => {
-    localStorage.removeItem("authorization");
+    localStorage.clear();
     dispatch({ type: resetUser });
+    dispatch({ type: resetCart });
+    dispatch({ type: resetLogin });
+    dispatch({ type: resetOrder });
+    dispatch({ type: resetOrders });
+    dispatch({ type: resetSignup });
   };
 };
 

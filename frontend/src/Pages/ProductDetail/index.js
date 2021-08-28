@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Rating, FullPageLoader, QtyInput } from "../../Components";
+import {
+  Container,
+  Rating,
+  FullPageLoader,
+  CustomLoader,
+  QtyInput,
+} from "../../Components";
 import { getProduct, addItem } from "../../actions";
 import "./index.style.scss";
 export const ProductDetail = () => {
@@ -65,7 +71,7 @@ export const ProductDetail = () => {
     <Container>
       <section className="detail__container">
         {loading ? (
-          <FullPageLoader height={45} width={45} />
+          <FullPageLoader />
         ) : reducerError ? (
           <p>{reducerError}</p>
         ) : (
@@ -126,7 +132,7 @@ export const ProductDetail = () => {
                   >
                     {cartLoading ? (
                       <div>
-                        <FullPageLoader height={18} width={18} color="#fff" />
+                        <CustomLoader height={18} width={18} color="#fff" />
                       </div>
                     ) : (
                       "Add to Cart"

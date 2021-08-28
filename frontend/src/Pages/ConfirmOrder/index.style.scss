@@ -1,0 +1,114 @@
+.container {
+  .order {
+    grid-column: center-start / center-end;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: 2rem;
+    margin: 3rem 0;
+
+    &__title {
+      grid-column: 1 / -1;
+      grid-row: 1 / span 1;
+    }
+    &__left {
+      grid-column: 1/5;
+    }
+    .order-summary {
+      border: var(--border);
+      grid-column: 5/7;
+      align-self: start;
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      justify-items: center;
+      align-items: center;
+      column-gap: 1.5rem;
+      row-gap: 1rem;
+      &__center-container {
+        grid-column: 1 / -1;
+        padding: 1.5rem 0;
+      }
+      h1 {
+        grid-column: 1 / -1;
+        // grid-row: 1 / span 1;
+        display: flex;
+        align-items: center;
+        margin-bottom: 0;
+        padding: 2rem 0;
+      }
+      .line {
+        grid-column: 1/-1;
+      }
+      p {
+        font-size: 1.5rem;
+        color: var(--font-color);
+      }
+      &__label {
+        grid-column: 1/2;
+        padding: 1rem 4rem;
+        justify-self: start;
+        text-transform: uppercase;
+      }
+      &__value {
+        grid-column: 2/3;
+        padding: 1rem 0;
+        justify-self: start;
+      }
+    }
+
+    &__container {
+      padding: 2rem 4rem;
+      border: var(--border);
+      border-bottom: none;
+
+      &:last-child {
+        border-bottom: var(--border);
+      }
+      h2 {
+        font-size: 2.5rem;
+        color: var(--font-color);
+        text-transform: capitalize;
+        font-weight: 400;
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .label {
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin-right: 0.5rem;
+      }
+      p {
+        font-size: 1.5rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+        color: var(--font-color);
+        padding: 1rem 0;
+        margin-left: 2rem;
+        display: flex;
+        align-items: center;
+      }
+    }
+    &__items {
+      display: grid;
+      margin-left: 2rem;
+      grid-template-columns: min-content max-content 1fr;
+      column-gap: 1.5rem;
+      row-gap: 1.5rem;
+      align-items: center;
+      justify-items: start;
+      img {
+        max-height: 7rem;
+        max-width: 7rem;
+      }
+      h4 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--font-color);
+      }
+      .title {
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}

@@ -33,9 +33,38 @@ body {
     border-radius: 5px;
     cursor: pointer;
   }
+  &__center-container {
+    width: 100%;
+    margin-top: 1rem;
+    text-align: center;
+  }
 }
 
 .initial__loader-container {
   height: 100vh;
   width: 100vw;
+}
+
+.checkout {
+  &__container {
+    grid-column: col-start 2 / col-end 7;
+    position: relative;
+    border: var(--border);
+    border-radius: 1rem;
+    padding: 5rem;
+  }
+  &__title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    font-weight: 400;
+    color: var(--font-color);
+  }
+}
+
+.line {
+  background-color: rgba(#393e41, 0.1);
+  height: 1px;
+  width: 100%;
 }

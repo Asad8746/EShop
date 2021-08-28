@@ -1,0 +1,56 @@
+.order-card {
+  padding: 1rem 1.5rem;
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 1rem;
+  text-decoration: none;
+  color: var(--font-color);
+  &__status-container {
+    display: flex;
+    column-gap: 0.5rem;
+    margin-left: auto;
+  }
+  &__status {
+    padding: 1rem 1.5rem;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 1px;
+    font-weight: 500;
+  }
+  &__not-delivered {
+    background-color: rgba(237, 238, 237, 0.5);
+  }
+  &__delivered {
+    background-color: rgba(3, 247, 3, 0.1);
+    color: green;
+  }
+
+  &__not-paid {
+    background-color: rgba(255, 9, 9, 0.1);
+    color: rgba(255, 0, 0, 0.7);
+  }
+  &__paid {
+    background-color: rgba(3, 247, 3, 0.1);
+  }
+  &__value {
+    color: var(--font-color);
+    padding: 1rem 1.5rem;
+    display: flex;
+    column-gap: 1rem;
+    font-size: 1.6rem;
+    align-items: center;
+    text-transform: capitalize;
+    &--label {
+      font-weight: 400;
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+    }
+    p {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+  }
+}

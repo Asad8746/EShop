@@ -1,7 +1,7 @@
 .auth {
   &-container {
-    width: 70%;
-    margin: 0 auto;
+    grid-column: center-start / center-end;
+
     // background-color: red;
     display: flex;
     margin-top: 2rem;

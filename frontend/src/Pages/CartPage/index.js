@@ -2,25 +2,27 @@ import { useHistory } from "react-router-dom";
 import { Container, CartItem } from "../../Components";
 import { useSelector } from "react-redux";
 import "./index.style.scss";
+import domains from "../../domains";
 export const CartPage = () => {
   const cart = useSelector((store) => store.cart);
+  const user = useSelector((store) => store.user);
+  console.log(user);
   const history = useHistory();
+  console.log(cart.items);
   return (
     <Container>
       <div className="cart">
-        <div className="cart__items-container">
+        <div className="cart__items">
           {cart.items.length === 0 ? (
-            <p>Cart is Empty</p>
+            <p className="cart__empty-message">Cart is Empty</p>
           ) : (
             <>
-              <div className="cart__items-header-container">
-                <h3 className="cart__items-header">Product</h3>
-                <h3 className="cart__items-header">Price</h3>
-                <h3 className="cart__items-header">Qty</h3>
-                <h3 className="cart__items-header">Total</h3>
-              </div>
-              {cart.items.map((item) => (
-                <CartItem product={item} key={item.id} />
+              <h3 className="cart__items-header">Product</h3>
+              <h3 className="cart__items-header">Price</h3>
+              <h3 className="cart__items-header">Qty</h3>
+              <h3 className="cart__items-header">Total</h3>
+              {cart.items.map((item, idx) => (
+                <CartItem product={item} key={item.id} index={idx} />
               ))}
             </>
           )}
@@ -50,7 +52,11 @@ export const CartPage = () => {
               <button
                 className="btn--primary"
                 onClick={() => {
-                  history.push("/auth?redirect=cart");
+                  if (user.isAuth) {
+                    history.push(domains.shipping);
+                    return;
+                  }
+                  history.push(`${domains.auth}?redirect=cart`);
                 }}
               >
                 Checkout

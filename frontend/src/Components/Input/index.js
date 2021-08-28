@@ -13,6 +13,7 @@ export const Input = ({
   placeholder,
   onChange,
   onBlur,
+  required,
 }) => {
   return (
     <div className="input">
@@ -22,6 +23,7 @@ export const Input = ({
         placeholder={placeholder}
         id={id}
         name={fieldName}
+        required={required}
         type={type}
         value={value}
         onChange={onChange}
@@ -45,6 +47,7 @@ Input.defaultProps = {
   placeholder: "",
   onChange: () => {},
   onBlur: () => {},
+  required: false,
 };
 Input.propTypes = {
   fieldName: PropTypes.string.isRequired,
@@ -57,4 +60,5 @@ Input.propTypes = {
   placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   onBlur: PropTypes.func.isRequired,
+  required: PropTypes.bool,
 };

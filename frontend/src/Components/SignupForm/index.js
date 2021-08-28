@@ -1,10 +1,10 @@
-import { useLocation, history, useHistory } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../actions";
 import { Input } from "../Input";
 import { Message } from "../Message";
-import { FullPageLoader } from "../Loader";
+import { CustomLoader } from "../Loader";
 import { useFormValidation } from "../../hooks/useFormValidation";
 import { emailValidator, emptyValidator } from "../../validation";
 import "./index.style.scss";
@@ -90,7 +90,7 @@ export const SignupForm = () => {
   return (
     <>
       {signUpState.loading ? (
-        <FullPageLoader height={70} width={70} />
+        <CustomLoader height={70} width={70} />
       ) : (
         <form className="signup" onSubmit={onSubmit}>
           {signUpState.error && (

@@ -1,0 +1,29 @@
+.paymentcard {
+  height: 15rem;
+  width: 15rem;
+  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 1.5rem;
+  background-color: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.2s ease-out;
+  &:first-child {
+    margin-left: 0;
+  }
+  i {
+    font-size: 1.8rem;
+    color: white;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+  }
+}
+
+.active {
+  background-color: var(--primary-color);
+}

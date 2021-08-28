@@ -5,7 +5,7 @@ import useFormValidation from "../../hooks/useFormValidation";
 import { emailValidator, emptyValidator } from "../../validation";
 
 import { Input } from "../Input";
-import { FullPageLoader } from "../Loader";
+import { CustomLoader } from "../Loader";
 import { Message } from "../Message";
 import "./index.style.scss";
 
@@ -45,7 +45,7 @@ export const LoginForm = () => {
   return (
     <>
       {loginState.loading ? (
-        <FullPageLoader height={70} width={70} />
+        <CustomLoader height={70} width={70} />
       ) : (
         <form className="login" onSubmit={onFormSubmit}>
           {loginState.error && (

@@ -1,6 +1,9 @@
 import { INIT_STATE } from "./initState";
 import {
   removeCartItem,
+  resetCart,
+  saveAddress,
+  savePaymentMethod,
   setCartError,
   setCartItems,
   setCartLoading,
@@ -41,7 +44,20 @@ const reducer = (state = INIT_STATE, action) => {
         ...state,
         error: action.payload,
       };
-
+    case saveAddress:
+      return {
+        ...state,
+        address: action.payload,
+      };
+    case savePaymentMethod:
+      return {
+        ...state,
+        paymentMethod: action.payload,
+      };
+    case resetCart:
+      return {
+        ...INIT_STATE,
+      };
     default:
       return state;
   }

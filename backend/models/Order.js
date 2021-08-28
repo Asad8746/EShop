@@ -9,6 +9,11 @@ const order_schema = new mongoose.Schema(
     },
     orderItems: [
       {
+        id: {
+          type: mongoose.Types.ObjectId,
+          required: true,
+          ref: "Product",
+        },
         name: {
           type: String,
           required: true,
@@ -18,10 +23,13 @@ const order_schema = new mongoose.Schema(
           required: true,
           default: 1,
         },
-        product: {
-          type: mongoose.Types.ObjectId,
+        image: {
+          type: String,
           required: true,
-          ref: "Product",
+        },
+        stockCount: {
+          type: Number,
+          required: true,
         },
         price: {
           type: Number,
@@ -30,9 +38,13 @@ const order_schema = new mongoose.Schema(
       },
     ],
     shippingAddress: {
-      type: mongoose.Types.ObjectId,
+      type: {
+        address: { type: String, required: true },
+        city: { type: String, required: true },
+        postalCode: { type: String, required: true },
+        country: { type: String, required: true },
+      },
       required: true,
-      ref: "Address",
     },
     paymentMethod: {
       type: String,
@@ -79,7 +91,7 @@ const order_schema = new mongoose.Schema(
     },
   },
   {
-    timeStamps: true,
+    timestamps: true,
   }
 );
 

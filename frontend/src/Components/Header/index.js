@@ -58,6 +58,12 @@ export const Header = () => {
                           isLink
                         />
                         <DropDownItem
+                          label="Orders"
+                          link={domains.orders}
+                          isLink
+                        />
+
+                        <DropDownItem
                           label="Log out"
                           onItemClick={onLogoutClick}
                         >

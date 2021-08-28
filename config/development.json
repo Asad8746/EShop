@@ -1,5 +1,6 @@
 {
   "mongoUri": "mongodb://localhost/EShop",
   "secretKey": "secretKey@123",
-  "clientUrl": "http://localhost:3000"
+  "clientUrl": "http://localhost:3000",
+  "paypalId": "Afsc2sL0Bybuz1OBizmk_4wFlxQfWCM6f1aL4qH3mhRaEtsS9EopmSE3T3zG8Jei6clTMWbUFZtC2aCH"
 }

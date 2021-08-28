@@ -1,12 +1,15 @@
 .header {
   background-color: var(--primary-color);
   height: 6rem;
+  grid-column: 1/-1;
+  display: grid;
+  // grid-template-columns: repeat(5, 1fr);
   &-nav {
-    height: 6rem;
-    display: flex;
+    grid-column: center-start / center-end;
     align-items: center;
-    justify-content: space-between;
-
+    justify-items: start;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     &__logo {
       color: var(--secondary-color);
       font-weight: 500;
@@ -20,6 +23,7 @@
     }
     ul {
       list-style-type: none;
+      justify-self: end;
       height: 100%;
       display: flex;
       //   justify-content: center;
@@ -36,6 +40,9 @@
       font-weight: 500;
       position: relative;
       cursor: pointer;
+      &:last-child {
+        padding-right: 0;
+      }
       a {
         text-decoration: none;
         color: inherit;

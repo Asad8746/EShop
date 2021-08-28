@@ -8,6 +8,8 @@
     color: rgb(161, 35, 35);
   }
   &--success {
-    background-color: var(--success-color);
+    background-color: rgba(7, 255, 7, 0.1);
+    color: green;
+    padding: 1rem 1.5rem;
   }
 }

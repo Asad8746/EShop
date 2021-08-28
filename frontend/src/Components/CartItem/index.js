@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { QtyInput } from "../QtyInput";
 import { addItem, removeItem } from "../../actions";
 import "./index.style.scss";
-export const CartItem = ({ product }) => {
+export const CartItem = ({ product, index }) => {
   const total = product.price * product.qty;
   const dispatch = useDispatch();
   const onDecClick = () => {
@@ -24,8 +24,12 @@ export const CartItem = ({ product }) => {
     dispatch(removeItem(product.id));
   };
   return (
-    <div className="cart-item">
-      <i className="fas fa-times" onClick={onCloseClick}></i>
+    <>
+      <i
+        className="fas fa-times cart-item__icon"
+        style={{ gridRow: `${Number(index) + 2} / ${Number(index) + 3} ` }}
+        onClick={onCloseClick}
+      ></i>
       <div className="cart-item__info">
         <img
           className="cart-item__image"
@@ -44,8 +48,13 @@ export const CartItem = ({ product }) => {
           stockCount={product.stockCount}
         />
       </div>
-      <h3 className="cart-item__price">{total.toFixed(2)}</h3>
-    </div>
+      <h3
+        className="cart-item__price cart-item__total"
+        style={{ gridRow: `${Number(index) + 2} / ${Number(index) + 3} ` }}
+      >
+        {total.toFixed(2)}
+      </h3>
+    </>
   );
 };
 
@@ -58,4 +67,5 @@ CartItem.propTypes = {
     stockCount: PropTypes.number.isRequired,
     qty: PropTypes.number.isRequired,
   }),
+  index: PropTypes.number.isRequired,
 };
