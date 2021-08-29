@@ -20,7 +20,7 @@ export const OrderCard = ({ order }) => {
           </div>
           <div
             className={`order-card__status ${
-              !order.isDelivered ? "order-card__not-paid" : "order-card__paid"
+              !order.isPaid ? "order-card__not-paid" : "order-card__paid"
             } `}
             style={{ order: -1 }}
           >
