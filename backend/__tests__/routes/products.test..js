@@ -1,6 +1,6 @@
 const request = require("supertest");
-const User = require("../models/User");
-const Product = require("../models/Product");
+const User = require("../../models/User");
+const Product = require("../../models/Product");
 const mongoose = require("mongoose");
 let server;
 
@@ -45,7 +45,7 @@ describe("/products", () => {
     );
   };
   beforeEach(async () => {
-    server = require("../index");
+    server = require("../../index");
   });
   afterEach((done) => {
     Product.deleteMany().then(() => {

@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const request = require("supertest");
-const UserModel = require("../models/User");
-const OrderModel = require("../models/Order");
-const fakeProducts = require("../products");
-const fixedTo2 = require("../utils/fixedTo2");
+const UserModel = require("../../models/User");
+const OrderModel = require("../../models/Order");
+const fakeProducts = require("../../products");
+const fixedTo2 = require("../../utils/fixedTo2");
 afterAll(async () => {
   await mongoose.connection.close();
 });
@@ -11,7 +11,7 @@ const items = fakeProducts.slice(0, 2).map((item) => {
   const qty = 1;
   const price = qty * item.price;
   return {
-    id: mongoose.Types.ObjectId(),
+    id: mongoose.Types.ObjectId().toString(),
     name: item.name,
     qty,
     image: item.image,
@@ -23,7 +23,7 @@ describe("/orders", () => {
   let server;
 
   beforeEach(() => {
-    server = require("../index");
+    server = require("../../index");
   });
 
   afterEach((done) => {

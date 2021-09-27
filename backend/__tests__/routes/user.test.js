@@ -1,7 +1,7 @@
 const request = require("supertest");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-const User = require("../models/User");
+const User = require("../../models/User");
 
 let server;
 
@@ -10,7 +10,7 @@ afterAll(async () => {
 });
 describe("/user", () => {
   beforeEach(() => {
-    server = require("../index");
+    server = require("../../index");
   });
   afterEach((done) => {
     User.deleteMany().then(() => {

@@ -9,7 +9,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node backend/seeder.js",
     "data:delete": "node backend/seeder.js -d",
-    "test:backend": "jest --watchAll --verbose --testPathPattern=backend/__tests__ --detectOpenHandles"
+    "test:backend": "jest --watchAll --verbose --testPathPattern=backend/ --detectOpenHandles"
   },
   "author": "",
   "license": "ISC",
