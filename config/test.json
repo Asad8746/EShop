@@ -1,0 +1,4 @@
+{
+  "mongoUri": "mongodb://localhost/EShop_Test",
+  "secretKey": "secretKey@123"
+}

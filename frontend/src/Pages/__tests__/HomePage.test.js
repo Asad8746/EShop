@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { cleanup, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { HomePage } from "../HomePage";
 import { Provider } from "react-redux";

@@ -18,7 +18,7 @@ router.post(
       throw new Error(error.details[0].message);
     }
     const { email, password } = value;
-    const user = await UserModel.findOne({ email: email });
+    const user = await UserModel.findOne({ email });
     if (user && (await bcrypt.compare(password, user.password))) {
       res.header("authorization", user.genToken()).status(200).send({
         id: user._id,

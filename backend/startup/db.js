@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const config = require("config");
 
-const connectDb = async () => {
+const connectDb = () => {
   mongoose
     .connect(config.get("mongoUri"), {
       useNewUrlParser: true,
@@ -9,7 +9,7 @@ const connectDb = async () => {
       useCreateIndex: true,
     })
     .then(() => {
-      console.log(`Connected to Db`);
+      console.log(`Connected to ${config.get("mongoUri")}`);
     })
     .catch((err) => {
       console.log(err.message);
