@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 const request = require("supertest");
-const UserModel = require("../../models/User");
-const OrderModel = require("../../models/Order");
-const fakeProducts = require("../../products");
-const fixedTo2 = require("../../utils/fixedTo2");
+const UserModel = require("../../../models/User");
+const OrderModel = require("../../../models/Order");
+const fakeProducts = require("../../../products");
+const fixedTo2 = require("../../../utils/fixedTo2");
 afterAll(async () => {
   await mongoose.connection.close();
 });
@@ -23,7 +23,7 @@ describe("/orders", () => {
   let server;
 
   beforeEach(() => {
-    server = require("../../index");
+    server = require("../../../index");
   });
 
   afterEach((done) => {
@@ -162,7 +162,9 @@ describe("/orders", () => {
         const expectedTotal = Number(
           fixedTo2(expectedItemsTotal + expectedTax + expectedShippingPrice)
         );
+        const savedOrder = await OrderModel.findById(response.body._id);
         expect(response.status).toBe(201);
+        expect(savedOrder).toBeDefined;
         expect(response.body.user).toBe(user._id.toString());
         expect(response.body.total_price).toBe(expectedTotal);
         expect(response.body.delivery_price).toBe(expectedShippingPrice);

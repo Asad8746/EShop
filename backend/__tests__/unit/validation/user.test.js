@@ -1,7 +1,7 @@
 const {
   validateLoginBody,
   validateRegisterBody,
-} = require("../../validation/user");
+} = require("../../../validation/user");
 
 describe("ValidateLoginBody", () => {
   let user;

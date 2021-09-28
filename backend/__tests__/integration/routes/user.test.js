@@ -1,7 +1,7 @@
 const request = require("supertest");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-const User = require("../../models/User");
+const User = require("../../../models/User");
 
 let server;
 
@@ -10,7 +10,7 @@ afterAll(async () => {
 });
 describe("/user", () => {
   beforeEach(() => {
-    server = require("../../index");
+    server = require("../../../index");
   });
   afterEach((done) => {
     User.deleteMany().then(() => {
@@ -139,9 +139,9 @@ describe("/user", () => {
       expect(response.status).toBe(400);
       expect(response.body.message).toBe("Email Already Registered");
     });
-    it("must return 200 and register a new user if user is valid", async () => {
+    it("must return 201 and register a new user if user is valid", async () => {
       const response = await exec();
-      const user = await User.findOne({ name: fakeUser.name });
+      const user = await User.findOne({ email: fakeUser.email });
       expect(response.status).toBe(201);
       expect(response.body.id).toBe(user._id.toString());
       expect(response.body).toHaveProperty("id");

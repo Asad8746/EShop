@@ -1,6 +1,6 @@
-const fakeProducts = require("../../products");
+const fakeProducts = require("../../../products");
 const mongoose = require("mongoose");
-const { validateOrderBody } = require("../../validation/order");
+const { validateOrderBody } = require("../../../validation/order");
 const items = fakeProducts.slice(0, 2).map((item) => {
   const qty = 1;
   const price = qty * item.price;
@@ -13,61 +13,6 @@ const items = fakeProducts.slice(0, 2).map((item) => {
     price,
   };
 });
-// const validateOrderBody = (body) => {
-//     const body_schema = joi.object({
-//       items: joi
-//         .array()
-//         .items({
-//           name: joi.string().required(),
-//           qty: joi.number().required(),
-//           id: joi.string().required(),
-//           price: joi.number().required(),
-//           image: joi.string().required(),
-//           stockCount: joi.number().required(),
-//         })
-//         .min(1)
-//         .required(),
-//       paymentMethod: joi.string().valid("cod", "paypal").required(),
-//       tax_price: joi.number().required(),
-//       delivery_price: joi.number().required(),
-//       total_price: joi.number().required(),
-//     });
-// address: joi
-// .object({
-//     address: joi.string().required(),
-//     city: joi.string().required(),
-//     postalCode: joi.string().required(),
-//     country: joi.string().required(),
-//   })
-//     return body_schema.validate(body);
-//   };
-
-// const validateOrderBody = (body) => {
-//     const body_schema = joi.object({
-//       items: joi
-//         .array()
-//         .items({
-//           name: joi.string().required(),
-//           qty: joi.number().required(),
-//           id: joi.string().required(),
-//           price: joi.number().required(),
-//           image: joi.string().required(),
-//           stockCount: joi.number().required(),
-//         })
-//         .min(1)
-//         .required(),
-//       address: joi
-//         .object({
-//           address: joi.string().required(),
-//           city: joi.string().required(),
-//           postalCode: joi.string().required(),
-//           country: joi.string().required(),
-//         })
-//         .required(),
-//       paymentMethod: joi.string().valid("cod", "paypal").required(),
-//     });
-//     return body_schema.validate(body);
-//   };
 describe("validateOrderBody", () => {
   let order;
   beforeEach(() => {
