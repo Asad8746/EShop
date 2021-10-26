@@ -6,6 +6,7 @@ module.exports = function (req, res, next) {
     token = token && token.startsWith("Bearer") ? token.split(" ")[1] : "";
     const decoded = jwt.verify(token, config.get("secretKey"));
     req.user = decoded.id;
+    req.isAdmin = decoded.isAdmin;
     next();
   } catch (err) {
     res.status(401).send({ message: "Invalid Token" });

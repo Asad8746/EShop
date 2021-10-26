@@ -5,6 +5,7 @@
   transition: all 0.2s ease-out;
   box-shadow: 0 1rem 2rem rgba(#000, 0.1);
   z-index: 800;
+  width: 20rem;
   background-color: #fff;
   .dropdown-item {
     cursor: pointer;
@@ -12,9 +13,12 @@
     display: block;
     padding: 2rem;
     display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 1.2rem;
     color: var(--font-color);
     font-weight: 600;
+    transition: all 0.1s ease-out;
     &:hover {
       background-color: #f7f7f7;
     }

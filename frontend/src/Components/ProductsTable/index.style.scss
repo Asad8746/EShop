@@ -1,0 +1,35 @@
+.product-table {
+  overflow: hidden;
+  &__header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem 0;
+    position: relative;
+    h1 {
+      margin: 0;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    button {
+      border: none;
+      background-color: rgb(33, 186, 69);
+      padding: 1rem 1.5rem;
+      border-radius: 0.5rem;
+      color: white;
+      font-weight: 500;
+      cursor: pointer;
+      font-size: 1.3rem;
+      &:hover {
+        background-color: rgb(19, 161, 52);
+      }
+      i {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}

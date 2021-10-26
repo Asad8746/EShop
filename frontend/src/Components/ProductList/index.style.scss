@@ -1,0 +1,17 @@
+.products {
+  &-container {
+    grid-column: center-start / center-end;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 35rem));
+    grid-row-gap: 3rem;
+    grid-column-gap: 3.5rem;
+    justify-content: center;
+    margin-bottom: 6rem;
+  }
+  &__empty-message {
+    grid-column: center-start / center-end;
+    margin-top: 2rem;
+    font-size: 2rem;
+    font-weight: 400;
+  }
+}

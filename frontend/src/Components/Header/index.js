@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import domains from "../../domains";
 import MenuDropDown from "../DropDown";
 import DropDownItem from "../DropDownItem";
+import { SearchBox } from "../SearchBox";
 import { Container } from "../Container";
 import { logout } from "../../actions";
 import "./index.style.scss";
@@ -14,6 +15,9 @@ export const Header = () => {
   const dispatch = useDispatch();
   const onLogoutClick = () => {
     dispatch(logout());
+  };
+  const onLinkClick = () => {
+    setIsOpen(false);
   };
   return (
     <header className="header">
@@ -26,6 +30,7 @@ export const Header = () => {
             <Link to={domains.home} className="header-nav__logo">
               EShop
             </Link>
+            <SearchBox />
             <ul>
               <li className="header-nav__link">
                 <Link to={domains.cart}>
@@ -56,11 +61,23 @@ export const Header = () => {
                           label="Edit Your Profile"
                           link="/"
                           isLink
+                          onItemClick={onLinkClick}
                         />
+                        {data.isAdmin && (
+                          <>
+                            <DropDownItem
+                              label="Admin Panel"
+                              link={domains.admin}
+                              isLink
+                              onItemClick={onLinkClick}
+                            />
+                          </>
+                        )}
                         <DropDownItem
                           label="Orders"
                           link={domains.orders}
                           isLink
+                          onItemClick={onLinkClick}
                         />
 
                         <DropDownItem

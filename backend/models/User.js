@@ -31,9 +31,13 @@ const user_schema = new mongoose.Schema(
 );
 
 user_schema.methods.genToken = function () {
-  return jwt.sign({ id: this._id }, config.get("secretKey"), {
-    expiresIn: "7d",
-  });
+  return jwt.sign(
+    { id: this._id, isAdmin: this.isAdmin },
+    config.get("secretKey"),
+    {
+      expiresIn: "7d",
+    }
+  );
 };
 
 module.exports = mongoose.model("User", user_schema);

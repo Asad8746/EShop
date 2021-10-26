@@ -7,8 +7,11 @@ import {
   FullPageLoader,
   CustomLoader,
   QtyInput,
+  Message,
+  ReviewList,
 } from "../../Components";
-import { getProduct, addItem } from "../../actions";
+import { getProduct, addItem, resetProductAction } from "../../actions";
+import { url } from "../../Api";
 import "./index.style.scss";
 export const ProductDetail = () => {
   const dispatch = useDispatch();
@@ -22,8 +25,14 @@ export const ProductDetail = () => {
     error: reducerError,
   } = useSelector((store) => store.product);
   const { loading: cartLoading } = useSelector((store) => store.cart);
+  const { data: reviews, loading: reviewLoading } = useSelector(
+    (store) => store.reviews
+  );
   useEffect(() => {
     dispatch(getProduct(params.id));
+    return () => {
+      dispatch(resetProductAction());
+    };
   }, [dispatch, params.id]);
   useEffect(() => {
     if (String(qty).match(/\D/g)) {
@@ -62,18 +71,20 @@ export const ProductDetail = () => {
   };
   const onSubmit = () => {
     if (data.stockCount > 0) {
-      console.log("Qty", qty);
       dispatch(addItem(data._id, qty));
     }
   };
   const disabled = data.stockCount === 0 && error;
+  if (loading) {
+    return <FullPageLoader />;
+  }
   return (
     <Container>
       <section className="detail__container">
-        {loading ? (
-          <FullPageLoader />
-        ) : reducerError ? (
-          <p>{reducerError}</p>
+        {reducerError ? (
+          <div className="error-container detail__error">
+            <Message variant="error" message={reducerError} />
+          </div>
         ) : (
           <>
             <div className="detail__img-container">
@@ -84,7 +95,7 @@ export const ProductDetail = () => {
                 ></i>
               </Link>
               <img
-                src={data.image}
+                src={`${url}/image/${data.image}`}
                 className="detail__img"
                 alt={`${data.name} product`}
               />
@@ -141,6 +152,7 @@ export const ProductDetail = () => {
                 </div>
               </div>
             </div>
+            <ReviewList />
           </>
         )}
       </section>

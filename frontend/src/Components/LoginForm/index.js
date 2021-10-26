@@ -30,18 +30,6 @@ export const LoginForm = () => {
     e.preventDefault();
     dispatch(loginUserAction(email.value, password.value, onSuccess));
   };
-  const onEmailChange = (e) => {
-    email.setValue(e.target.value);
-  };
-  const onEmailBlur = () => {
-    email.setBlur(true);
-  };
-  const onPasswordChange = (e) => {
-    password.setValue(e.target.value);
-  };
-  const onPasswordBlur = () => {
-    password.setBlur(true);
-  };
   return (
     <>
       {loginState.loading ? (
@@ -49,7 +37,7 @@ export const LoginForm = () => {
       ) : (
         <form className="login" onSubmit={onFormSubmit}>
           {loginState.error && (
-            <div className="login__error-container">
+            <div className="error-container">
               <Message variant="error" message={loginState.error} />
             </div>
           )}
@@ -62,8 +50,8 @@ export const LoginForm = () => {
             blur={email.blur}
             placeholder="Email"
             value={email.value}
-            onChange={onEmailChange}
-            onBlur={onEmailBlur}
+            onChange={email.setValue}
+            onBlur={email.setBlur}
           />
           <Input
             fieldName="password"
@@ -74,8 +62,8 @@ export const LoginForm = () => {
             value={password.value}
             error={password.error}
             blur={password.blur}
-            onChange={onPasswordChange}
-            onBlur={onPasswordBlur}
+            onChange={password.setValue}
+            onBlur={password.setBlur}
           />
           <div className="login__btn-container">
             <button className="btn--primary" disabled={btnDisabled}>

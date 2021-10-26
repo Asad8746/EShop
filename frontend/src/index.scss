@@ -13,7 +13,6 @@ html {
 
 body {
   font-family: "Montserrat", sans-serif;
-  // background-color: var(--secondary-color);
 }
 
 .heading__main {
@@ -67,4 +66,24 @@ body {
   background-color: rgba(#393e41, 0.1);
   height: 1px;
   width: 100%;
+}
+
+.content-loader-container {
+  height: 15rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.error-container {
+  text-align: center;
+  padding: 1rem 0;
+}
+.admin__table-item {
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  color: --var(font-color);
+  &--bold {
+    font-weight: 500;
+  }
 }

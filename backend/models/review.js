@@ -6,13 +6,11 @@ module.exports = new mongoose.Schema({
     required: true,
     ref: "User",
   },
-  name: {
-    type: String,
-    required: true,
-  },
   rating: {
-    type: String,
+    type: Number,
     required: true,
+    min: 1,
+    max: 5,
   },
   comment: {
     type: String,

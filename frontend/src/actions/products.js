@@ -3,24 +3,54 @@ import {
   setProducts,
   setProductsError,
   setProductsLoading,
+  setSearchProducts,
+  setSearchProductsError,
+  setSearchProductsLoading,
+  setPaginationTotal,
 } from "../reducers/constants";
-
-export const getProducts = () => {
-  return async (dispatch) => {
+import returnError from "../utils/error";
+export const getProducts = (pageNumber = 1) => {
+  return async (dispatch, getState) => {
     try {
-      dispatch({ type: setProductsLoading, payload: true });
-      const response = await Api.get("/products");
-      dispatch({ type: setProducts, payload: response.data });
+      if (!getState().products.loading) {
+        dispatch({ type: setProductsLoading, payload: true });
+      }
+      let url = "/products";
+      if (pageNumber) {
+        url += `?page=${pageNumber}&pageSize=2`;
+      }
+      const response = await Api.get(url);
+      dispatch({ type: setProducts, payload: response.data.products });
+      dispatch({ type: setPaginationTotal, payload: response.data.totalPages });
     } catch (err) {
       dispatch({
         type: setProductsError,
-        payload:
-          err.response && err.response.data
-            ? err.response.data.message
-            : err.message,
+        payload: returnError(err),
       });
     } finally {
       dispatch({ type: setProductsLoading, payload: false });
+    }
+  };
+};
+export const getSearchProducts = (query = "", pageNumber = 1) => {
+  return async (dispatch, getState) => {
+    try {
+      if (!getState().products.loading) {
+        dispatch({ type: setSearchProductsLoading, payload: true });
+      }
+      console.log(pageNumber);
+
+      const response = await Api.get(`/products?q=${query}&page=${pageNumber}`);
+
+      dispatch({ type: setSearchProducts, payload: response.data.products });
+      dispatch({ type: setPaginationTotal, payload: response.data.totalPages });
+    } catch (err) {
+      dispatch({
+        type: setSearchProductsError,
+        payload: returnError(err),
+      });
+    } finally {
+      dispatch({ type: setSearchProductsLoading, payload: false });
     }
   };
 };

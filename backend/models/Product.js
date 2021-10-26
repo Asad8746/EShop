@@ -37,19 +37,10 @@ const product_schema = new mongoose.Schema(
       required: true,
       default: 1,
     },
-    // image: {
-    //   data: {
-    //     type: Buffer,
-    //     required: true,
-    //   },
-    //   contentType: {
-    //     type: String,
-    //     required: true,
-    //   },
-    // },
     image: {
-      type: String,
+      type: mongoose.Types.ObjectId,
       required: true,
+      ref: "Image",
     },
     rating: {
       type: Number,

@@ -1,0 +1,28 @@
+.review-item {
+  margin-bottom: 1rem;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &__top-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__heading {
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-right: 1rem;
+  }
+
+  &__rating {
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+  }
+  &__content {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-left: 0.5rem;
+  }
+}

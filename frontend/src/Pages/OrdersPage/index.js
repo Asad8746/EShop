@@ -1,18 +1,17 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrders } from "../../actions";
 import { Container, FullPageLoader, OrderCard } from "../../Components";
 import "./index.style.scss";
 
-const labels = [
-  "Order id",
-  "Created on",
-  "Paid Status",
-  "Delivered Status",
-  "Total",
-];
-export const OrdersPage = (props) => {
+// const labels = [
+//   "Order id",
+//   "Created on",
+//   "Paid Status",
+//   "Delivered Status",
+//   "Total",
+// ];
+export const OrdersPage = () => {
   const dispatch = useDispatch();
   const { loading, data, error } = useSelector((store) => store.orders);
   useEffect(() => {
@@ -22,7 +21,7 @@ export const OrdersPage = (props) => {
   return (
     <Container>
       <div className="orders">
-        <div style={{ width: "100%", textAlign: "center" }}>
+        <div className="orders__title-container">
           <h2 className="heading__main">Your Orders</h2>
         </div>
         {data.map((item) => {
@@ -32,5 +31,3 @@ export const OrdersPage = (props) => {
     </Container>
   );
 };
-
-OrdersPage.propTypes = {};

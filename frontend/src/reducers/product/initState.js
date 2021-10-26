@@ -1,5 +1,5 @@
 export const INIT_STATE = {
   data: {},
-  loading: false,
+  loading: true,
   error: "",
 };

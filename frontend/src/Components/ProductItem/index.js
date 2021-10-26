@@ -1,10 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { url } from "../../Api";
 
 export const ProductItem = ({ product }) => {
   return (
     <>
-      <img src={product.image} alt={`${product.name}`} />
+      <img src={`${url}/image/${product.image}`} alt={`${product.name}`} />
       <h4 className="title">{product.name}</h4>
       <h4 className="price">{`${product.qty} x ${product.price} = ${
         product.qty * product.price

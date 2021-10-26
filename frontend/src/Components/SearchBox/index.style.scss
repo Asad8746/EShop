@@ -1,0 +1,43 @@
+.search-box {
+  //   border-radius: 50px;
+  width: 35rem;
+  height: 3rem;
+  background-color: rgba(16, 75, 163, 0.4);
+  overflow: hidden;
+  form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+    margin-left: 1rem;
+  }
+  &__input {
+    height: 100%;
+    flex: 1;
+    border: none;
+    font-size: 1.4rem;
+    background-color: transparent;
+    color: white;
+    &::placeholder {
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    &:focus {
+      outline: none;
+    }
+    &::selection {
+      background-color: white;
+      color: var(--font-color);
+    }
+  }
+  &__btn {
+    height: 100%;
+    padding: 0 1rem;
+    background-color: rgba(16, 75, 163, 0.6);
+    border: none;
+    i {
+      color: white;
+      font-size: 1.3rem;
+    }
+  }
+}

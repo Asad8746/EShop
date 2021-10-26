@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { QtyInput } from "../QtyInput";
 import { addItem, removeItem } from "../../actions";
+import { url } from "../../Api";
 import "./index.style.scss";
 export const CartItem = ({ product, index }) => {
   const total = product.price * product.qty;
@@ -19,7 +20,6 @@ export const CartItem = ({ product, index }) => {
       dispatch(addItem(product.id, product.qty + 1));
     }
   };
-  const onChange = (e) => {};
   const onCloseClick = () => {
     dispatch(removeItem(product.id));
   };
@@ -33,7 +33,7 @@ export const CartItem = ({ product, index }) => {
       <div className="cart-item__info">
         <img
           className="cart-item__image"
-          src={product.image}
+          src={`${url}/image/${product.image}`}
           alt={`${product.name} product`}
         />
         <h3 className="cart-item__name">{product.name}</h3>
@@ -44,7 +44,6 @@ export const CartItem = ({ product, index }) => {
           qty={product.qty}
           onIncClick={onIncClick}
           onDecClick={onDecClick}
-          onChange={onChange}
           stockCount={product.stockCount}
         />
       </div>

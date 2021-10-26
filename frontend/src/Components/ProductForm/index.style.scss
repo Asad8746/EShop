@@ -1,0 +1,38 @@
+.product-form {
+  grid-column: center-start / center-end;
+  padding: 0 2rem;
+  &__header {
+    grid-column: col-end 1 / col-end 7;
+
+    margin: 1rem 0;
+    display: grid;
+    grid-template-columns: min-content repeat(2, 1fr);
+    grid-template-rows: max-content;
+    align-items: center;
+    i {
+      grid-column: 1 /2;
+      grid-row: 1 / -1;
+      align-self: center;
+      justify-self: center;
+      margin-right: auto;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+  }
+  &__title {
+    grid-column: 2/-1;
+    display: block;
+    font-size: 2.2rem;
+    text-align: center;
+    font-weight: 400;
+    color: var(--primary-color);
+    margin: 0;
+  }
+  &__container {
+    grid-column: col-end 1 / col-end 7;
+  }
+  &__actions {
+    text-align: center;
+    margin-top: 1rem;
+  }
+}

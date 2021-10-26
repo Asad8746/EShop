@@ -1,0 +1,24 @@
+.reviews {
+  margin-top: 1rem;
+  grid-column: 1/ 5;
+
+  &__heading {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.7rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  &__loader-container {
+    grid-column: 1/ 5;
+
+    padding: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__list {
+    margin-left: 1rem;
+  }
+}

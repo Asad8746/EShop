@@ -13,10 +13,11 @@ router.get(
   asyncMiddleware(async (req, res) => {
     const orders = await OrderModel.find({
       user: req.user,
-    }).select(
-      "_id isDelivered isPaid deliveredAt paidAt total_price createdAt paymentMethod"
-    );
-
+    })
+      .select(
+        "_id isDelivered isPaid deliveredAt paidAt total_price createdAt paymentMethod"
+      )
+      .sort({ paidAt: -1 });
     res.status(200).send(orders);
   })
 );

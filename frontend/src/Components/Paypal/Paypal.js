@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { usePayPalScriptReducer, PayPalButtons } from "@paypal/react-paypal-js";
 import { CustomLoader } from "../Loader";
 import PropTypes from "prop-types";

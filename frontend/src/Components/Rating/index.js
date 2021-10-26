@@ -1,9 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./index.style.scss";
-export const Rating = ({ rating, totalReviews, hideLine, showTotalReview }) => {
+export const Rating = ({
+  rating,
+  totalReviews,
+  hideLine,
+  showTotalReview,
+  customClass,
+}) => {
   return (
-    <div className="ratting">
+    <div className={`ratting ${customClass}`}>
       {!hideLine && <div className="ratting__line"></div>}
       <div className="ratting__stars">
         {[1, 2, 3, 4, 5].map((i) => {
@@ -29,10 +35,12 @@ Rating.defaultProps = {
   hideLine: false,
   totalReviews: 0,
   showTotalReview: false,
+  customClass: "",
 };
 Rating.propTypes = {
   rating: PropTypes.number,
   hideLine: PropTypes.bool,
   totalReviews: PropTypes.number,
   showTotalReview: PropTypes.bool,
+  customClass: PropTypes.string,
 };

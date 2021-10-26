@@ -1,0 +1,8 @@
+.admin {
+  grid-column: center-start / center-end;
+  //   background-color: blue;
+  //   display: flex;
+  &__content {
+    flex: 1;
+  }
+}

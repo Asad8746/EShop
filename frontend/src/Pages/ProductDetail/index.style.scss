@@ -6,7 +6,9 @@
     margin-top: 2rem;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    // grid-template-rows: repeat(8, 1fr);
+  }
+  &__error {
+    grid-column: 1 / -1;
   }
   &__back-link:link {
     position: absolute;
@@ -22,6 +24,7 @@
   }
   &__img-container {
     grid-column: 1/ 5;
+    grid-row: 1/2;
   }
   &__img {
     height: 100%;

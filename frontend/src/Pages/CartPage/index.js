@@ -6,9 +6,7 @@ import domains from "../../domains";
 export const CartPage = () => {
   const cart = useSelector((store) => store.cart);
   const user = useSelector((store) => store.user);
-  console.log(user);
   const history = useHistory();
-  console.log(cart.items);
   return (
     <Container>
       <div className="cart">
@@ -53,7 +51,9 @@ export const CartPage = () => {
                 className="btn--primary"
                 onClick={() => {
                   if (user.isAuth) {
-                    history.push(domains.shipping);
+                    if (cart.items.length !== 0) {
+                      history.push(domains.shipping);
+                    }
                     return;
                   }
                   history.push(`${domains.auth}?redirect=cart`);

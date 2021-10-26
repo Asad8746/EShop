@@ -9,7 +9,7 @@ const DropDownItem = ({ label, link, isLink, onItemClick }) => {
           {label}
         </div>
       ) : (
-        <Link className="dropdown-item" to={link}>
+        <Link className="dropdown-item" to={link} onClick={onItemClick}>
           {label}
         </Link>
       )}

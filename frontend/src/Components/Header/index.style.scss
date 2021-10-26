@@ -2,14 +2,16 @@
   background-color: var(--primary-color);
   height: 6rem;
   grid-column: 1/-1;
-  display: grid;
+  // display: grid;
   // grid-template-columns: repeat(5, 1fr);
   &-nav {
+    height: 6rem;
     grid-column: center-start / center-end;
     align-items: center;
     justify-items: start;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: [logo-start] min-content [logo-end search-box-start] max-content [search-box-end navbar-start] 1fr [navbar-end];
+    column-gap: 2rem;
     &__logo {
       color: var(--secondary-color);
       font-weight: 500;
@@ -20,6 +22,9 @@
       border-top: 1px solid var(--secondary-color);
       border-bottom: 1px solid var(--secondary-color);
       text-decoration: none;
+      &:hover {
+        color: var(--secondary-color);
+      }
     }
     ul {
       list-style-type: none;

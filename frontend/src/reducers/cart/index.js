@@ -55,6 +55,7 @@ const reducer = (state = INIT_STATE, action) => {
         paymentMethod: action.payload,
       };
     case resetCart:
+      console.log("Cart reset");
       return {
         ...INIT_STATE,
       };

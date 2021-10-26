@@ -8,6 +8,12 @@ const domains = {
   confirmOrder: "/confirm",
   order: "/order/:id",
   orders: "/orders",
+  admin: "/admin",
+  productEdit: "/products/edit",
+  deleteUser: "/users/delete",
+  createProduct: "/products/new",
+  deleteProduct: "/products/delete",
+  searchPage: "/search",
 };
 
 export default domains;

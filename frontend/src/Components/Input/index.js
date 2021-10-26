@@ -15,23 +15,45 @@ export const Input = ({
   onBlur,
   required,
 }) => {
+  const onInputBlur = () => {
+    if (!blur) {
+      onBlur(true);
+    }
+  };
   return (
     <div className="input">
+      <div className="input__field-container">
+        {type === "textarea" ? (
+          <textarea
+            className="input__field input__textarea"
+            placeholder={placeholder}
+            id={id}
+            name={fieldName}
+            required={required}
+            type={type}
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            onBlur={onInputBlur}
+            rows={5}
+          />
+        ) : (
+          <input
+            className="input__field"
+            placeholder={placeholder}
+            id={id}
+            name={fieldName}
+            required={required}
+            type={type}
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            onBlur={onInputBlur}
+          />
+        )}
+        <label htmlFor={id} className="input__label">
+          {label}
+        </label>
+      </div>
       {blur && error && <Message variant="error" message={error} />}
-      <input
-        className="input__field"
-        placeholder={placeholder}
-        id={id}
-        name={fieldName}
-        required={required}
-        type={type}
-        value={value}
-        onChange={onChange}
-        onBlur={onBlur}
-      />
-      <label htmlFor={id} className="input__label">
-        {label}
-      </label>
     </div>
   );
 };
@@ -52,7 +74,7 @@ Input.defaultProps = {
 Input.propTypes = {
   fieldName: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   blur: PropTypes.bool.isRequired,

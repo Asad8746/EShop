@@ -54,39 +54,6 @@ export const SignupForm = () => {
       );
     }
   };
-  const onEmailChange = (e) => {
-    email.setValue(e.target.value);
-  };
-  const onPasswordChange = (e) => {
-    password.setValue(e.target.value);
-  };
-  const onConfirmPasswordChange = (e) => {
-    confirmPassword.setValue(e.target.value);
-  };
-  const onNameChange = (e) => {
-    name.setValue(e.target.value);
-  };
-  const onNameBlur = () => {
-    if (!name.blur) {
-      name.setBlur(true);
-    }
-  };
-  const onEmailBlur = () => {
-    if (!email.blur) {
-      email.setBlur(true);
-    }
-  };
-  const onConfirmPasswordBlur = () => {
-    if (!confirmPassword.blur) {
-      confirmPassword.setBlur(true);
-    }
-  };
-
-  const onPasswordBlur = () => {
-    if (!password.blur) {
-      password.setBlur(true);
-    }
-  };
   return (
     <>
       {signUpState.loading ? (
@@ -94,7 +61,7 @@ export const SignupForm = () => {
       ) : (
         <form className="signup" onSubmit={onSubmit}>
           {signUpState.error && (
-            <div className="login__error-container">
+            <div className="error-container">
               <Message variant="error" message={signUpState.error} />
             </div>
           )}
@@ -107,8 +74,8 @@ export const SignupForm = () => {
             blur={name.blur}
             placeholder="Name"
             value={name.value}
-            onChange={onNameChange}
-            onBlur={onNameBlur}
+            onChange={name.setValue}
+            onBlur={name.setBlur}
           />
           <Input
             fieldName="email"
@@ -119,8 +86,8 @@ export const SignupForm = () => {
             blur={email.blur}
             placeholder="Email"
             value={email.value}
-            onChange={onEmailChange}
-            onBlur={onEmailBlur}
+            onChange={email.setValue}
+            onBlur={email.setBlur}
           />
           <Input
             fieldName="password"
@@ -131,8 +98,8 @@ export const SignupForm = () => {
             value={password.value}
             error={password.error}
             blur={password.blur}
-            onChange={onPasswordChange}
-            onBlur={onPasswordBlur}
+            onChange={password.setValue}
+            onBlur={password.setBlur}
           />
           <Input
             fieldName="Confirm password"
@@ -143,8 +110,8 @@ export const SignupForm = () => {
             value={confirmPassword.value}
             error={confirmPassword.error}
             blur={confirmPassword.blur}
-            onChange={onConfirmPasswordChange}
-            onBlur={onConfirmPasswordBlur}
+            onChange={confirmPassword.setValue}
+            onBlur={confirmPassword.setBlur}
           />
           <div className="signup__btn-container">
             <button className="btn--primary" disabled={btnDisabled}>

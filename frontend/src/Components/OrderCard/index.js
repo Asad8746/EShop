@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import dayjs from "dayjs";
 import "./index.style.scss";
 export const OrderCard = ({ order }) => {
   return (
@@ -40,13 +41,13 @@ export const OrderCard = ({ order }) => {
       {order.isPaid && (
         <div className="order-card__value">
           <h2 className="order-card__value--label">Paid on</h2>
-          <p>{order.paidAt}</p>
+          <p>{dayjs(order.paidAt).format("DD-MM-YYYY")}</p>
         </div>
       )}
       {order.isDelivered && (
         <div className="order-card__value">
           <h2 className="order-card__value--label">Delivered on</h2>
-          <p>{order.deliveredAt}</p>
+          <p>{dayjs(order.deliveredAt).format("DD-MM-YYYY")}</p>
         </div>
       )}
 

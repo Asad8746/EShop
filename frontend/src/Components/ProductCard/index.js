@@ -1,6 +1,7 @@
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Rating } from "../Rating";
+import { url } from "../../Api";
 import "./index.style.scss";
 
 export const ProductCard = ({ product }) => {
@@ -11,7 +12,7 @@ export const ProductCard = ({ product }) => {
   return (
     <div className="product-card" onClick={onProductClick}>
       <img
-        src={product.image}
+        src={`${url}/image/${product.image}`}
         className="product-card__image"
         alt={`${product.name} product`}
       />

@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { checkEmpty } from "../../utils";
 import { saveAddressAction } from "../../actions";
@@ -12,6 +12,7 @@ export const ShippingAdress = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const addressState = useSelector((store) => store.cart.address);
+  const cartItems = useSelector((store) => store.cart.items);
   const address = useFormValidation(
     checkEmpty(addressState, "address", ""),
     emptyValidator,
@@ -48,6 +49,9 @@ export const ShippingAdress = () => {
       history.push(domains.payment);
     }
   };
+  if (cartItems.length === 0) {
+    return <Redirect to={domains.cart} />;
+  }
   return (
     <Container>
       <>
@@ -63,7 +67,7 @@ export const ShippingAdress = () => {
               fieldName="address"
               required
               onBlur={() => address.setBlur(true)}
-              onChange={(e) => address.setValue(e.target.value)}
+              onChange={address.setValue}
               type="text"
               placeholder="Address"
             />
@@ -74,8 +78,8 @@ export const ShippingAdress = () => {
               error={city.error}
               fieldName="city"
               required
-              onBlur={() => city.setBlur(true)}
-              onChange={(e) => city.setValue(e.target.value)}
+              onBlur={city.setBlur}
+              onChange={city.setValue}
               type="text"
               placeholder="City"
             />
@@ -86,8 +90,8 @@ export const ShippingAdress = () => {
               error={postalCode.error}
               fieldName="postalCode"
               required
-              onBlur={() => postalCode.setBlur(true)}
-              onChange={(e) => postalCode.setValue(e.target.value)}
+              onBlur={postalCode.setBlur}
+              onChange={postalCode.setValue}
               type="text"
               placeholder="postal Code"
             />
@@ -98,8 +102,8 @@ export const ShippingAdress = () => {
               error={country.error}
               fieldName="country"
               required
-              onBlur={() => country.setBlur(true)}
-              onChange={(e) => country.setValue(e.target.value)}
+              onBlur={country.setBlur}
+              onChange={country.setValue}
               type="text"
               placeholder="Country"
             />

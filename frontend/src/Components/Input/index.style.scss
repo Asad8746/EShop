@@ -1,18 +1,26 @@
 .input {
   width: 100%;
+  margin-bottom: 1.8rem;
+  &__field-container {
+    position: relative;
+  }
   &__label {
+    position: absolute;
+    padding: 0 0.5rem;
+    left: 1.1rem;
+    top: 0;
     display: inline-block;
     font-size: 1.2rem;
-    padding: 0.8rem 1rem;
     letter-spacing: 1px;
     text-transform: capitalize;
-    transform: translateY(0);
+    background-color: white;
     visibility: visible;
     opacity: 1;
     color: var(--font-color);
     transition: all 0.3s ease-out;
     font-weight: 600;
     color: var(--font-color);
+    transform: translateY(-1rem);
   }
   &__field,
   &__field:focus {
@@ -21,6 +29,10 @@
     border-radius: 1rem;
     padding: 1.5rem 1rem;
     outline: none;
+  }
+  &__textarea,
+  &__textarea:focus {
+    resize: none;
   }
   &__field::placeholder {
     color: var(--font-color);
@@ -34,6 +46,6 @@
   &__field:placeholder-shown + &__label {
     visibility: hidden;
     opacity: 0;
-    transform: translateY(-3.8rem);
+    transform: translateY(0);
   }
 }

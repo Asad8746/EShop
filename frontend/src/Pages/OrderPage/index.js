@@ -10,7 +10,7 @@ import {
   PaypalContainer,
 } from "../../Components";
 import { fixedTo2 } from "../../utils/FixedDecimal";
-
+import dayjs from "dayjs";
 import "./index.style.scss";
 export const OrderPage = () => {
   const params = useParams();
@@ -105,7 +105,11 @@ export const OrderPage = () => {
                   variant={isDelivered ? "success" : ""}
                   message={`Your Order ${orderId} is ${
                     !isDelivered ? "not" : ""
-                  } Delivered`}
+                  } Delivered ${
+                    isDelivered
+                      ? `on ${dayjs(data.deliveredAt).format("DD-MM-YYYY")}`
+                      : ""
+                  } `}
                   customClassName={
                     isDelivered
                       ? "order__custom-success"
@@ -126,7 +130,7 @@ export const OrderPage = () => {
                       isPaid ? "order__paid-status" : "order__not-paid-status"
                     }`}
                   >
-                    {isPaid ? "Paid" : "Not Paid"}
+                    {isPaid ? `Paid on ${data.paidAt}` : "Not Paid"}
                   </span>
                 </p>
               </div>
