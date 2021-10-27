@@ -2,8 +2,8 @@ const router = require("express").Router();
 const OrderModel = require("../models/Order");
 const asyncMiddleware = require("../middleware/asyncMiddleware");
 const authMiddleware = require("../middleware/authMiddleware");
+const deleteCache = require("../middleware/deleteCache");
 const validateObjectId = require("../middleware/validObjectId");
-
 const { validateOrderBody } = require("../validation/order");
 const fixedTo2 = require("../utils/fixedTo2");
 
@@ -17,7 +17,8 @@ router.get(
       .select(
         "_id isDelivered isPaid deliveredAt paidAt total_price createdAt paymentMethod"
       )
-      .sort({ paidAt: -1 });
+      .sort({ paidAt: -1 })
+      .cache({ key: req.user });
     res.status(200).send(orders);
   })
 );
@@ -41,7 +42,7 @@ router.get(
 );
 router.post(
   "/",
-  authMiddleware,
+  [authMiddleware, deleteCache],
   asyncMiddleware(async (req, res) => {
     const { error } = validateOrderBody(req.body);
     if (error) {
