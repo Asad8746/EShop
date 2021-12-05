@@ -24,19 +24,21 @@ export const SearchBox = () => {
     }
   }, [location.pathname]);
   return (
-    <div className="search-box">
-      <form onSubmit={onFormSubmit}>
-        <input
-          type="text"
-          value={value}
-          className="search-box__input"
-          placeholder="Search"
-          onChange={onInputChange}
-        />
-        <button className="search-box__btn">
-          <i className="fas fa-search"></i>
-        </button>
-      </form>
+    <div className="search-box__container">
+      <div className="search-box">
+        <form onSubmit={onFormSubmit}>
+          <input
+            type="text"
+            value={value}
+            className="search-box__input"
+            placeholder="Search"
+            onChange={onInputChange}
+          />
+          <button className="search-box__btn">
+            <i className="fas fa-search"></i>
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+@import "../../base.scss";
 .cart-item {
   position: relative;
   justify-items: center;
@@ -11,12 +12,17 @@
     margin-bottom: 0;
     border: none;
   }
+
   &__info {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    grid-column: 1/2;
+    @media only screen and (max-width: $bp-cart-screen-small) {
+      grid-column: 1/2;
+    }
   }
   &__icon {
     padding: 0.3rem;
@@ -27,8 +33,6 @@
     position: relative;
     border: 1px solid rgba(161, 163, 165, 0.5);
     border-radius: 50%;
-
-    // position: absolute;
     cursor: pointer;
     justify-self: end;
     align-self: start;
@@ -44,14 +48,15 @@
     font-weight: inherit;
     color: var(--font-color);
     font-weight: 500;
-
-    // text-align: center;
   }
   &__price {
-    // font-size: ;
     flex: 1;
     font-weight: inherit;
     letter-spacing: 2px;
+    grid-column: 2/3;
+  }
+  &__qty {
+    grid-column: 3/4;
   }
   &__total {
     grid-column: 4/5;

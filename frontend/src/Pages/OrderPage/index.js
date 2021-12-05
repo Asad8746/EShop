@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getOrder, resetOrderAction } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
+import dayjs from "dayjs";
 import {
   Container,
   FullPageLoader,
@@ -10,7 +11,6 @@ import {
   PaypalContainer,
 } from "../../Components";
 import { fixedTo2 } from "../../utils/FixedDecimal";
-import dayjs from "dayjs";
 import "./index.style.scss";
 export const OrderPage = () => {
   const params = useParams();
@@ -107,7 +107,9 @@ export const OrderPage = () => {
                     !isDelivered ? "not" : ""
                   } Delivered ${
                     isDelivered
-                      ? `on ${dayjs(data.deliveredAt).format("DD-MM-YYYY")}`
+                      ? `on ${dayjs(data.deliveredAt).format(
+                          "DD-MM-YYYY-hh:mm"
+                        )}`
                       : ""
                   } `}
                   customClassName={
@@ -130,7 +132,11 @@ export const OrderPage = () => {
                       isPaid ? "order__paid-status" : "order__not-paid-status"
                     }`}
                   >
-                    {isPaid ? `Paid on ${data.paidAt}` : "Not Paid"}
+                    {isPaid
+                      ? `Paid on ${dayjs(data.paidAt).format(
+                          "DD/MM/YYYY-hh:mm"
+                        )}`
+                      : "Not Paid"}
                   </span>
                 </p>
               </div>

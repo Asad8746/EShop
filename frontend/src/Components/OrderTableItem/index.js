@@ -10,7 +10,7 @@ export const OrderTableItem = ({ order }) => {
   const [paidStatus, setPaidStatus] = useState(initialPaidValue);
   const [deliveredStatus, setDeliveredStatus] = useState(initialDeliveredValue);
   const onOrderStatusChange = (data, cb) => {
-    dispatch(markOrder(order._id, data, cb));
+    markOrder(order._id, data, cb);
   };
   useEffect(() => {
     if (typeof paidStatus !== "string") {

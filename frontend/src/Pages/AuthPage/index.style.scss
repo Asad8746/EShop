@@ -1,14 +1,16 @@
+@import "../../base.scss";
 .auth {
   &-container {
     grid-column: center-start / center-end;
-
-    // background-color: red;
     display: flex;
     margin-top: 2rem;
     height: 60rem;
     box-shadow: 0 1rem 5rem rgba(0, 0, 0, 0.1);
     border-radius: 1.5rem;
     overflow: hidden;
+    @media only screen and (max-width: $bp-auth-screen-large) {
+      flex-direction: column;
+    }
   }
 
   &__left {
@@ -17,12 +19,23 @@
     position: relative;
     background-size: cover;
     background-repeat: no-repeat;
+    @media only screen and (max-width: $bp-auth-screen-large) {
+      width: 100%;
+      height: 8rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
   &__nav {
     position: absolute;
     right: 0;
     top: 40%;
     transform: translateY(-50%);
+    @media only screen and (max-width: $bp-auth-screen-large) {
+      position: relative;
+      display: flex;
+    }
     &-radio {
       display: none;
     }
@@ -39,7 +52,6 @@
       align-items: center;
       padding: 2rem 0;
       transition: all 0.2s ease-out;
-      //   background-color: red;
     }
     .active-item {
       color: var(--primary-color);
@@ -53,6 +65,9 @@
       height: 5rem;
       z-index: -10;
       transition: all 0.2s ease-out;
+      @media only screen and (max-width: $bp-auth-screen-large) {
+        border-radius: 1rem;
+      }
       &::before {
         content: "";
         position: absolute;
@@ -63,6 +78,9 @@
         border-bottom-right-radius: 50%;
         box-shadow: 0 2rem 0 0 white;
         background: transparent;
+        @media only screen and (max-width: $bp-auth-screen-large) {
+          display: none;
+        }
       }
 
       &::after {
@@ -75,24 +93,36 @@
         border-top-right-radius: 50%;
         box-shadow: 2rem 0 0 0 white;
         background: transparent;
+        @media only screen and (max-width: $bp-auth-screen-large) {
+          display: none;
+        }
       }
     }
     #signup-radio:checked ~ .active {
       transform: translateY(5rem);
+      @media only screen and (max-width: $bp-auth-screen-large) {
+        transform: translateX(10rem) translateY(0);
+      }
     }
     #login-radio:checked ~ .active {
       transform: translateY(0rem);
+      @media only screen and (max-width: $bp-auth-screen-large) {
+        transform: translateX(0rem) translateY(0);
+      }
     }
   }
   &__right {
     flex: 1;
-    // background-color: yellow;
     padding: 0 4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    @media only screen and (max-width: $bp-auth-screen-large) {
+      width: 100%;
+    }
   }
   &__header {
+    font-size: 2rem;
     color: var(--font-color);
     font-weight: 400;
     text-align: center;

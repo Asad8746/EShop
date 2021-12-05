@@ -1,9 +1,11 @@
+@import "../../base.scss";
 .cart {
   grid-column: center-start / center-end;
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   margin-top: 3rem;
   column-gap: 2.5rem;
+
   &__empty-message {
     grid-column: 3/4;
     font-size: 1.6rem;
@@ -20,13 +22,16 @@
     display: grid;
     grid-template-columns: min-content repeat(3, 1fr);
     background-color: white;
-    // box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
     border: var(--border);
     border-radius: 0.5rem;
     column-gap: 2rem;
     row-gap: 3rem;
     justify-items: center;
     align-items: center;
+    @media only screen and (max-width: $bp-cart-screen-large) {
+      grid-column: 1/-1;
+      grid-row: 1/2;
+    }
   }
   &__items-header {
     font-size: 1.3rem;
@@ -36,10 +41,14 @@
   }
   &__checkout-container {
     grid-column: 7 / -1;
-
-    align-self: start;
     border: var(--border);
     padding: 2.5rem;
+    @media only screen and (max-width: $bp-cart-screen-large) {
+      grid-column: 3 / 7;
+    }
+    @media only screen and (max-width: $bp-cart-screen-small) {
+      grid-column: 1/-1;
+    }
   }
   &__total-info {
     width: 100%;

@@ -1,27 +1,44 @@
+@import "../../base.scss";
 .header {
   background-color: var(--primary-color);
-  height: 6rem;
   grid-column: 1/-1;
-  // display: grid;
-  // grid-template-columns: repeat(5, 1fr);
+
   &-nav {
     height: 6rem;
     grid-column: center-start / center-end;
     align-items: center;
     justify-items: start;
     display: grid;
-    grid-template-columns: [logo-start] min-content [logo-end search-box-start] max-content [search-box-end navbar-start] 1fr [navbar-end];
+    grid-template-columns: [logo-start] min-content [logo-end search-box-start] 1fr [search-box-end navbar-start] max-content [navbar-end];
     column-gap: 2rem;
+    @media only screen and (max-width: $bp-home-screen-large) {
+      height: auto;
+      grid-template-columns: 1fr;
+      grid-template-rows: [logo-start] max-content [logo-end search-box-start] max-content [search-box-end navbar-start] max-content [navbar-end];
+      row-gap: 1.5rem;
+      justify-items: center;
+      padding: 1.5rem 0;
+    }
     &__logo {
       color: var(--secondary-color);
       font-weight: 500;
-      font-size: 1.8rem;
-      letter-spacing: 0.4rem;
+      font-size: 1.5rem;
+      letter-spacing: 0.1rem;
       text-transform: uppercase;
-      padding: 0.5rem 0;
-      border-top: 1px solid var(--secondary-color);
       border-bottom: 1px solid var(--secondary-color);
       text-decoration: none;
+      padding-bottom: 0.1rem;
+      @media only screen and (max-width: $bp-home-screen-large) {
+        grid-row: logo-start/logo-end;
+        grid-column: 1/-1;
+      }
+      .first {
+        font-size: 2.5rem;
+      }
+      .dot {
+        color: var(--tertiary-color);
+        font-size: 4.5rem;
+      }
       &:hover {
         color: var(--secondary-color);
       }
@@ -31,8 +48,12 @@
       justify-self: end;
       height: 100%;
       display: flex;
-      //   justify-content: center;
       align-items: center;
+      @media only screen and (max-width: $bp-home-screen-large) {
+        grid-row: navbar-start / navbar-end;
+        grid-column: 1/-1;
+        justify-self: center;
+      }
     }
     &__link {
       height: 100%;

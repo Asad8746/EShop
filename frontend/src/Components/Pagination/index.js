@@ -18,7 +18,7 @@ export const Pagination = () => {
   return (
     pagination.totalPages > 0 && (
       <>
-        <div className="pagination__continer" />
+        <div className="pagination__container" />
         <footer className="pagination">
           <div className="pagination__box-container">
             {Array.from(Array(pagination.totalPages).keys()).map(

@@ -25,9 +25,7 @@ export const ProductDetail = () => {
     error: reducerError,
   } = useSelector((store) => store.product);
   const { loading: cartLoading } = useSelector((store) => store.cart);
-  const { data: reviews, loading: reviewLoading } = useSelector(
-    (store) => store.reviews
-  );
+
   useEffect(() => {
     dispatch(getProduct(params.id));
     return () => {

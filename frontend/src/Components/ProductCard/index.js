@@ -17,7 +17,7 @@ export const ProductCard = ({ product }) => {
         alt={`${product.name} product`}
       />
       <h3 className="product-card__name">{product.name}</h3>
-      <p className="product-card__price">{product.price}</p>
+      <p className="product-card__price">${product.price}</p>
       <Rating rating={product.rating} />
     </div>
   );

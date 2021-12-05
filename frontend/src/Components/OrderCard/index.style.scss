@@ -1,6 +1,6 @@
 .order-card {
   padding: 1rem 1.5rem;
-  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
   background-color: white;
   border-radius: 1rem;
   text-decoration: none;
@@ -12,11 +12,10 @@
   }
   &__status {
     padding: 1rem 1.5rem;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    letter-spacing: 1px;
     font-weight: 500;
   }
   &__not-delivered {

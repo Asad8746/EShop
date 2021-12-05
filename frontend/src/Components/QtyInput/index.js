@@ -17,7 +17,7 @@ export const QtyInput = ({
         disabled={disabled}
         className="qty-input__btn"
       >
-        -
+        <i className="fas fa-minus"></i>
       </button>
       <input
         className="qty-input__field"
@@ -30,7 +30,7 @@ export const QtyInput = ({
         disabled={disabled}
         className="qty-input__btn"
       >
-        +
+        <i className="fas fa-plus"></i>
       </button>
     </div>
   );

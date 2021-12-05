@@ -28,14 +28,15 @@ export const Header = () => {
           )}
           <nav className="header-nav">
             <Link to={domains.home} className="header-nav__logo">
-              EShop
+              <span className="first">E</span>Shop
+              <span className="dot">.</span>
             </Link>
             <SearchBox />
             <ul>
               <li className="header-nav__link">
                 <Link to={domains.cart}>
                   <i className="fas fa-shopping-cart"></i>
-                  Cart
+                  Your Cart
                 </Link>
               </li>
               {!isAuth ? (

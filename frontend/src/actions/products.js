@@ -17,7 +17,7 @@ export const getProducts = (pageNumber = 1) => {
       }
       let url = "/products";
       if (pageNumber) {
-        url += `?page=${pageNumber}&pageSize=2`;
+        url += `?page=${pageNumber}&pageSize=10`;
       }
       const response = await Api.get(url);
       dispatch({ type: setProducts, payload: response.data.products });
@@ -38,7 +38,6 @@ export const getSearchProducts = (query = "", pageNumber = 1) => {
       if (!getState().products.loading) {
         dispatch({ type: setSearchProductsLoading, payload: true });
       }
-      console.log(pageNumber);
 
       const response = await Api.get(`/products?q=${query}&page=${pageNumber}`);
 

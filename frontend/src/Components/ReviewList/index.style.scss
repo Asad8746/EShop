@@ -1,7 +1,10 @@
+@import "../../base.scss";
 .reviews {
   margin-top: 1rem;
   grid-column: 1/ 5;
-
+  @media only screen and (max-width: $bp-detail-screen-large) {
+    grid-column: 1/-1;
+  }
   &__heading {
     text-align: center;
     margin-bottom: 1rem;

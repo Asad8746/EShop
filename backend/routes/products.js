@@ -11,7 +11,7 @@ Router.get(
   "/",
   asyncMiddleware(async (req, res) => {
     const query = req.query;
-    const pageSize = Number(query.pageSize) || 2;
+    const pageSize = Number(query.pageSize) || 10;
     const page = Number(query.page) || 1;
     const regExQuery = query.q
       ? {

@@ -8,6 +8,7 @@ const Order = require("../models/Order");
 const auth = require("../middleware/authMiddleware");
 const asyncMiddleware = require("../middleware/asyncMiddleware");
 const validObjectId = require("../middleware/validObjectId");
+const deleteCache = require("../middleware/deleteCache");
 const imageCheck = require("../middleware/imageCheck");
 const admin = require("../middleware/adminMiddleware");
 const limitHandler = require("../middleware/limitHandler");
@@ -175,7 +176,7 @@ router.get(
 
 router.patch(
   "/orders/:id",
-  [validObjectId, auth, admin],
+  [validObjectId, auth, admin, deleteCache],
   asyncMiddleware(async (req, res) => {
     const { error } = markOrder(req.body);
     if (error) {
@@ -183,7 +184,7 @@ router.patch(
       throw new Error(error.details[0].message);
     }
     const order = await Order.findById(req.params.id).select(
-      "_id isDelivered isPaid paymentMethod"
+      "_id isDelivered isPaid paymentMethod user"
     );
     if (!order) {
       res.status(404);
@@ -198,6 +199,7 @@ router.patch(
       order.isPaid = typeof isPaid === "boolean" ? isPaid : order.isPaid;
       order.paidAt = Date.now();
     }
+    req.hKey = order.user;
 
     await order.save();
     res.status(200).send(order);

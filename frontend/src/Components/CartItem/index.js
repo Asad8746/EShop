@@ -38,8 +38,13 @@ export const CartItem = ({ product, index }) => {
         />
         <h3 className="cart-item__name">{product.name}</h3>
       </div>
-      <h3 className="cart-item__price">{product.price}</h3>
-      <div className="cart-item__price">
+      <h3
+        className="cart-item__price"
+        style={{ gridRow: `${Number(index) + 2} / ${Number(index) + 3} ` }}
+      >
+        {product.price}
+      </h3>
+      <div className="cart-item__qty">
         <QtyInput
           qty={product.qty}
           onIncClick={onIncClick}

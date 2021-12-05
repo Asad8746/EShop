@@ -1,4 +1,5 @@
 {
   "mongoUri": "mongodb://localhost/EShop_Test",
-  "secretKey": "secretKey@123"
+  "secretKey": "secretKey@123",
+  "redisURL": "redis://127.0.0.1:6379"
 }

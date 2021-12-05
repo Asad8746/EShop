@@ -1,9 +1,18 @@
+@import "../../base.scss";
 .search-box {
   //   border-radius: 50px;
   width: 35rem;
   height: 3rem;
   background-color: rgba(16, 75, 163, 0.4);
   overflow: hidden;
+  &__container {
+    grid-column: search-box-start / search-box-end;
+    justify-self: center;
+    @media only screen and (max-width: $bp-home-screen-large) {
+      grid-row: 2/3;
+      grid-column: 1/-1;
+    }
+  }
   form {
     display: flex;
     flex-direction: row;
