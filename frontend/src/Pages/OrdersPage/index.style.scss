@@ -11,6 +11,12 @@
     grid-column: 1/-1;
     text-align: center;
   }
+  &__empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
   &__line {
     background-color: rgba(0, 0, 0, 0.1);
     grid-column: 1 / -1;

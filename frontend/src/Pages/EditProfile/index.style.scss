@@ -1,0 +1,15 @@
+.edit-profile {
+  margin-top: 4rem;
+  padding: 6rem 4rem;
+  grid-column: center-start / center-end;
+  //   background-color: red;
+  border: 2px solid #f7f7f7;
+  border-radius: 4rem;
+  &__header {
+    color: var(--font-color);
+    text-align: center;
+    font-size: 3.2rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+  }
+}

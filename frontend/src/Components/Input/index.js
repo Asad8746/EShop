@@ -2,7 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Message } from "../Message";
 import "./index.style.scss";
-export const Input = ({
+const areEqual = (props, nextProps) => {
+  // will not rerender if true is returned
+  return (
+    props.value === nextProps.value &&
+    props.error === nextProps.error &&
+    props.blur === nextProps.blur
+  );
+};
+const InputComponent = ({
   fieldName,
   type,
   value,
@@ -20,6 +28,7 @@ export const Input = ({
       onBlur(true);
     }
   };
+  console.log(fieldName, " is rendered");
   return (
     <div className="input">
       <div className="input__field-container">
@@ -58,7 +67,7 @@ export const Input = ({
   );
 };
 
-Input.defaultProps = {
+InputComponent.defaultProps = {
   fieldName: "",
   type: "text",
   value: "",
@@ -71,7 +80,7 @@ Input.defaultProps = {
   onBlur: () => {},
   required: false,
 };
-Input.propTypes = {
+InputComponent.propTypes = {
   fieldName: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -84,3 +93,5 @@ Input.propTypes = {
   onBlur: PropTypes.func.isRequired,
   required: PropTypes.bool,
 };
+export const Input = React.memo(InputComponent, areEqual);
+Input.displayName = "Input";

@@ -6,7 +6,11 @@ import { Input } from "../Input";
 import { Message } from "../Message";
 import { CustomLoader } from "../Loader";
 import { useFormValidation } from "../../hooks/useFormValidation";
-import { emailValidator, emptyValidator } from "../../validation";
+import {
+  emailValidator,
+  emptyValidator,
+  confirmPasswordValid,
+} from "../../validation";
 import "./index.style.scss";
 export const SignupForm = () => {
   const dispatch = useDispatch();
@@ -25,13 +29,10 @@ export const SignupForm = () => {
     emptyValidator,
     "Password is not suppose to be Empty"
   );
-  const confirmPassword = useFormValidation("", (value) => {
-    if (value !== password.value) {
-      return { valid: false, error: "Confirm Password must match Password" };
-    } else {
-      return { valid: true, error: "" };
-    }
-  });
+  const confirmPassword = useFormValidation(
+    "",
+    confirmPasswordValid(password.value)
+  );
   const btnDisabled =
     !name.isValid ||
     !email.isValid ||

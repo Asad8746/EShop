@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import dayjs from "dayjs";
 import { markOrder } from "../../actions";
 export const OrderTableItem = ({ order }) => {
   const initialPaidValue = order.isPaid ? "yes" : "no";
   const initialDeliveredValue = order.isDelivered ? "yes" : "no";
-  const dispatch = useDispatch();
   const [paidStatus, setPaidStatus] = useState(initialPaidValue);
   const [deliveredStatus, setDeliveredStatus] = useState(initialDeliveredValue);
   const onOrderStatusChange = (data, cb) => {

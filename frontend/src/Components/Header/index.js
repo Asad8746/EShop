@@ -60,7 +60,7 @@ export const Header = () => {
                       <div className="setting-dropdown">
                         <DropDownItem
                           label="Edit Your Profile"
-                          link="/"
+                          link={domains.editProfile}
                           isLink
                           onItemClick={onLinkClick}
                         />

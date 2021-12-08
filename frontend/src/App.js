@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
+import history from "./history";
+import domains from "./domains";
 import { checkToken } from "./actions";
-import { PrivateRoute } from "./Components";
+import { PrivateRoute, FullPageLoader, Header } from "./Components";
 import {
   ProductDetail,
   HomePage,
@@ -20,10 +22,10 @@ import {
   CreateProductPage,
   DeleteProductConfirmation,
   SearchPage,
+  EditProfilePage,
+  NotFound,
 } from "./Pages";
 
-import { FullPageLoader, Header } from "./Components";
-import domains from "./domains";
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
@@ -34,7 +36,7 @@ function App() {
     return <FullPageLoader />;
   }
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <Header />
       <Switch>
         <Route path={domains.home} component={HomePage} exact />
@@ -83,12 +85,15 @@ function App() {
         >
           <EditProductPage />
         </PrivateRoute>
-
+        <PrivateRoute path={domains.editProfile} exact>
+          <EditProfilePage />
+        </PrivateRoute>
         {!user.isAuth && (
           <Route path={domains.auth} component={AuthPage} exact />
         )}
+        <Route path="*" component={NotFound} />
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 }
 

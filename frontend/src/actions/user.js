@@ -1,4 +1,6 @@
 import Api from "../Api";
+import domains from "../domains";
+import history from "../history";
 import {
   setUserAndAuth,
   resetUser,
@@ -59,6 +61,7 @@ export const logout = () => {
     dispatch({ type: resetOrder });
     dispatch({ type: resetOrders });
     dispatch({ type: resetSignup });
+    history.push(domains.home);
   };
 };
 

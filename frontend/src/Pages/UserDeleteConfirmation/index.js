@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Redirect, useHistory, useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { DeleteConfirmationModal } from "../../Components";
 import { deleteUser } from "../../actions";
 export const UserDeleteConfirmation = () => {

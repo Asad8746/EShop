@@ -40,9 +40,11 @@ export const ReviewList = () => {
       ) : (
         <>
           <div className="reviews__list">
-            {data.map((review) => {
-              return <ReviewItem key={review._id} review={review} />;
-            })}
+            {data.length === 0
+              ? "No Reviews"
+              : data.map((review) => {
+                  return <ReviewItem key={review._id} review={review} />;
+                })}
           </div>
           {isAuth && <ReviewForm />}
         </>

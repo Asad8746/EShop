@@ -54,7 +54,7 @@ export const getAdminProducts = () => {
       dispatch({ type: setAdminProductsList, payload: response.data });
       dispatch({ type: setAdminProductsLoading, payload: false });
     } catch (err) {
-      console.log(err.message);
+      dispatch({ type: setAdminProductsError, payload: returnError(err) });
     }
   };
 };

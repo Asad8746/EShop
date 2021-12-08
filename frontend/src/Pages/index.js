@@ -13,3 +13,5 @@ export * from "./UserDeleteConfirmation";
 export * from "./CreateProduct";
 export * from "./DeleteProduct";
 export * from "./SearchPage";
+export * from "./EditProfile";
+export * from "./NotFound";

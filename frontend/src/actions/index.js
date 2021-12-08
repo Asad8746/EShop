@@ -9,3 +9,4 @@ export * from "./admin";
 export * from "./users";
 export * from "./reviews";
 export * from "./pagination";
+export * from "./editProfile";

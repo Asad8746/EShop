@@ -14,6 +14,7 @@ const domains = {
   createProduct: "/products/new",
   deleteProduct: "/products/delete",
   searchPage: "/search",
+  editProfile: "/user/edit",
 };
 
 export default domains;

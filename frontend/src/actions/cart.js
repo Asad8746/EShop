@@ -1,7 +1,6 @@
 import {
   setCartItems,
   setCartLoading,
-  setCartError,
   removeCartItem,
   saveAddress,
   savePaymentMethod,

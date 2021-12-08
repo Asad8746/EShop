@@ -1,6 +1,5 @@
-import React, { useEffect, useReducer, useRef } from "react";
-import { useParams, useLocation, Redirect } from "react-router";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { useLocation, Redirect } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, ProductList, Pagination } from "../../Components";
 import domains from "../../domains";
@@ -23,7 +22,6 @@ export const SearchPage = () => {
     <Container>
       <>
         <h1 className="home__title">Searched Products</h1>
-
         <ProductList data={data} loading={loading} error={error} />
         <Pagination />
       </>
