@@ -12,16 +12,12 @@ describe("/user", () => {
   beforeEach(() => {
     server = require("../../../index");
   });
-  afterEach((done) => {
-    User.deleteMany().then(() => {
-      server.close(() => {
-        done();
-      });
-    });
+  afterEach(async () => {
+    server.close();
+    await User.deleteMany();
   });
   describe("GET /me", () => {
     let token;
-
     const exec = () => {
       return request(server)
         .get("/user/me")
@@ -76,63 +72,6 @@ describe("/user", () => {
       expect(response.status).toBe(403);
       expect(response.body.message).toBe('"name" is required');
     });
-    it("must return 403 (Forbidden request) if password is not provided in the request body", async () => {
-      fakeUser = {
-        name: "Asad khan",
-        email: "1@gmail.com",
-      };
-      const response = await exec();
-
-      expect(response.status).toBe(403);
-      expect(response.body.message).toBe('"password" is required');
-    });
-    it("must return 403 (Forbidden request) if email is not provided in the request body", async () => {
-      fakeUser = {
-        name: "Asad khan",
-        password: "12345",
-      };
-      const response = await exec();
-      expect(response.status).toBe(403);
-      expect(response.body.message).toBe('"email" is required');
-    });
-    it("must return 403 if name length is less than 2", async () => {
-      fakeUser["name"] = "1";
-      const response = await exec();
-      expect(response.status).toBe(403);
-    });
-    it("must return 403 if name length is greater than 255", async () => {
-      fakeUser["name"] = new Array(256)
-        .fill(1)
-        .map((item, idx) => item)
-        .join("");
-
-      const response = await exec();
-      expect(response.status).toBe(403);
-    });
-    it("must return 403 if email is inValid", async () => {
-      fakeUser["email"] = "asadkhan";
-      const response = await exec();
-      expect(response.status).toBe(403);
-    });
-    it("must return 403 if email length is greater than 255", async () => {
-      fakeUser["email"] =
-        new Array(256)
-          .fill(1)
-          .map((item, idx) => item)
-          .join("") + "@gmail.com";
-
-      const response = await exec();
-      expect(response.status).toBe(403);
-    });
-    it("must return 403 if password length is greater than 255", async () => {
-      fakeUser["password"] = new Array(256)
-        .fill(1)
-        .map((item, idx) => item)
-        .join("");
-
-      const response = await exec();
-      expect(response.status).toBe(403);
-    });
     it("must return 400 if a user with given email is already registered", async () => {
       await new User(fakeUser).save();
       const response = await exec();
@@ -162,47 +101,11 @@ describe("/user", () => {
     const exec = () => {
       return request(server).post("/user/login").send(fakeUser);
     };
-
-    it("must return 403 if password is not provided in the request body", async () => {
-      fakeUser = {
-        email: "1@gmail.com",
-      };
-      const response = await exec();
-
-      expect(response.status).toBe(403);
-      expect(response.body.message).toBe('"password" is required');
-    });
     it("must return 403 if email is not provided in the request body", async () => {
-      fakeUser = {
-        password: "12345",
-      };
+      delete fakeUser.email;
       const response = await exec();
       expect(response.status).toBe(403);
       expect(response.body.message).toBe('"email" is required');
-    });
-    it("must return 403 if email is inValid", async () => {
-      fakeUser["email"] = "asadkhan";
-      const response = await exec();
-      expect(response.status).toBe(403);
-    });
-    it("must return 403 if email length is greater than 255", async () => {
-      fakeUser["email"] =
-        new Array(256)
-          .fill(1)
-          .map((item, idx) => item)
-          .join("") + "@gmail.com";
-
-      const response = await exec();
-      expect(response.status).toBe(403);
-    });
-    it("must return 403 if password length is greater than 255", async () => {
-      fakeUser["password"] = new Array(256)
-        .fill(1)
-        .map((item, idx) => item)
-        .join("");
-
-      const response = await exec();
-      expect(response.status).toBe(403);
     });
     it("must return 401 if user with email is not found", async () => {
       const response = await exec();
@@ -224,9 +127,7 @@ describe("/user", () => {
       };
       const response = await exec();
       expect(response.status).toBe(401);
-      expect(response.body.message.toLowerCase()).toBe(
-        "invalid email or password"
-      );
+      expect(response.body).toHaveProperty("message");
     });
     it("must return 200 if both email and password are correct", async () => {
       const user = new User({
@@ -242,6 +143,54 @@ describe("/user", () => {
       expect(response.body).toHaveProperty("email");
       expect(response.body).toHaveProperty("name");
       expect(response.body).toHaveProperty("isAdmin");
+    });
+  });
+  describe("PATCH /me", () => {
+    let user, token, user_body;
+    const exec = () => {
+      return request(server)
+        .patch("/user/me")
+        .set("authorization", `Bearer ${token}`)
+        .send(user_body);
+    };
+    beforeEach(async () => {
+      user = new User({
+        name: "fake",
+        email: "fake@gmail.com",
+        password: await bcrypt.hash("fake.1", await bcrypt.genSalt(10)),
+      });
+      user_body = {
+        name: "updated_fake",
+        password: "123456",
+      };
+      token = user.genToken();
+      await user.save();
+    });
+
+    it("must update user Profile if user logged in", async () => {
+      const response = await exec();
+      user = await User.findById(user.id);
+      expect(response.body).toHaveProperty("name", user_body.name);
+      const verify = await bcrypt.compare(user_body.password, user.password);
+      expect(verify).toBe(true);
+    });
+    it("must update user name if user name is given in body", async () => {
+      delete user_body.password;
+      const response = await exec();
+      expect(response.body).toHaveProperty("name", user_body.name);
+    });
+    it("must update user password if user password is given in body", async () => {
+      delete user_body.name;
+      await exec();
+      user = await User.findById(user.id);
+      const verify = await bcrypt.compare(user_body.password, user.password);
+      expect(verify).toBe(true);
+    });
+    it("must return 404 User Profile not found", async () => {
+      user = new User();
+      token = user.genToken();
+      const response = await exec();
+      expect(response.status).toBe(404);
     });
   });
 });

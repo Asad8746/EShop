@@ -10,9 +10,7 @@ module.exports = (req, res, next) => {
       next();
       return;
     }
-    res.status(400);
-    throw new Error("Please upload a valid image");
   }
   res.status(400);
-  throw new Error("Image is required");
+  throw new Error("Please upload a valid image");
 };

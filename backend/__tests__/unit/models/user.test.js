@@ -6,7 +6,6 @@ describe("User.genToken", () => {
     const user = new User();
     const token = user.genToken();
     const decoded = jwt.verify(token, config.get("secretKey"));
-    console.log("Decoded", decoded);
     expect(decoded.id).toBe(user._id.toString());
   });
 });

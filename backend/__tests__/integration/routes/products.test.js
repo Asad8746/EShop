@@ -7,10 +7,10 @@ let server;
 const products = [
   {
     name: "Airpods Wireless Bluetooth Headphones",
-    image: "/images/airpods.jpg",
     description:
       "Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working",
     brand: "Apple",
+    image: mongoose.Types.ObjectId(),
     category: "Electronics",
     price: 89.99,
     stockCount: 10,
@@ -19,7 +19,7 @@ const products = [
   },
   {
     name: "iPhone 11 Pro 256GB Memory",
-    image: "/images/phone.jpg",
+    image: mongoose.Types.ObjectId(),
     description:
       "Introducing the iPhone 11 Pro. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life",
     brand: "Apple",
@@ -30,12 +30,12 @@ const products = [
     numReviews: 8,
   },
 ];
-afterAll(async () => {
-  await mongoose.connection.close();
-});
 
 describe("/products", () => {
   let user;
+  afterAll(async () => {
+    await mongoose.connection.close();
+  });
   const insertProducts = async () => {
     user = new User();
     await Product.insertMany(
@@ -47,19 +47,17 @@ describe("/products", () => {
   beforeEach(async () => {
     server = require("../../../index");
   });
-  afterEach((done) => {
-    Product.deleteMany().then(() => {
-      server.close(() => {
-        done();
-      });
-    });
+  afterEach(async () => {
+    server.close();
+    await Product.deleteMany();
   });
   describe("GET /", () => {
     it("must fetch products from database", async () => {
       await insertProducts();
       const response = await request(server).get("/products/");
+      const { products } = response.body;
       expect(response.status).toBe(200);
-      expect(response.body.length).toBe(2);
+      expect(products.length).toBe(2);
     });
   });
   describe("GET /:id", () => {

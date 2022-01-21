@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const OrderModel = require("../models/Order");
+const User = require("../models/User");
 const asyncMiddleware = require("../middleware/asyncMiddleware");
 const authMiddleware = require("../middleware/authMiddleware");
 const deleteCache = require("../middleware/deleteCache");
@@ -35,7 +36,6 @@ router.get(
     if (!order) {
       res.status(404);
       throw new Error("Order Not Found");
-      return;
     }
     res.status(200).send(order);
   })
@@ -77,13 +77,12 @@ router.patch(
   [validateObjectId, authMiddleware],
   asyncMiddleware(async (req, res) => {
     const _id = req.params.id;
-    const user = req.user;
-    let order = await OrderModel.findOne({
-      _id,
-      user,
-    });
-    order.isPaid = true;
-    order.paidAt = Date.now();
+    const user = await User.findById(req.user).select("_id isAdmin");
+    let order = await OrderModel.findById(_id);
+    if (!order) {
+      res.status(404);
+      throw new Error(`Order with id ${_id} not found`);
+    }
     if (order.paymentMethod === "paypal") {
       order.paymentResult = {
         id: req.body.id,
@@ -91,7 +90,12 @@ router.patch(
         update_time: req.body.update_time,
         email_address: req.body.email_address,
       };
+    } else if (order.paymentMethod !== "paypal" && !user.isAdmin) {
+      res.status(400);
+      throw new Error("Not a Authorized User to Perform this Request");
     }
+    order.isPaid = true;
+    order.paidAt = Date.now();
     order = await order.save();
     res.status(200).send(order);
   })

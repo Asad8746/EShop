@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const fileupload = require("express-fileupload");
-const config = require("config");
 const User = require("../models/User");
 const Product = require("../models/Product");
 const Image = require("../models/Image");

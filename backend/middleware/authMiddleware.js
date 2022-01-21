@@ -9,6 +9,7 @@ module.exports = function (req, res, next) {
     req.isAdmin = decoded.isAdmin;
     next();
   } catch (err) {
-    res.status(401).send({ message: "Invalid Token" });
+    res.status(401);
+    throw new Error("Invalid Token");
   }
 };

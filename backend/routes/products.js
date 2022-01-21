@@ -39,27 +39,27 @@ Router.get(
   validObjectId,
   asyncMiddleware(async (req, res) => {
     const id = req.params.id;
-    if (mongoose.isValidObjectId(id)) {
-      const product = await Product.findById(id);
-      if (product) {
-        res.send(product);
-      } else {
-        res.status(404);
-        throw new Error(`Product with ${id} not found`);
-      }
-    } else {
-      res.status(400);
-      throw new Error("Invalid id");
+    const product = await Product.findById(id);
+    if (!product) {
+      res.status(404);
+      throw new Error(`Product with ${id} not found`);
     }
+    res.status(200).send(product);
   })
 );
 Router.get(
   "/:id/reviews",
   validObjectId,
   asyncMiddleware(async (req, res) => {
-    const { reviews } = await Product.findById(req.params.id)
+    const { id } = req.params;
+    const product = await Product.findById(id)
       .select("reviews")
       .populate("reviews.user", "_id name");
+    if (!product) {
+      res.status(404);
+      throw new Error(`Product with ${id} not Found`);
+    }
+    const { reviews } = product;
     res.status(200).send({ reviews });
   })
 );
