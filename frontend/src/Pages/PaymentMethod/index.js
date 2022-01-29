@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import { Steps, Container, PaymentCard } from "../../Components";
@@ -29,11 +29,20 @@ export const PaymentMethod = () => {
     }
     history.push(domains.confirmOrder);
   };
+  const setActiveState = (value) => {
+    return () =>
+      setActive((prev) => {
+        if (prev !== value) return value;
+        return prev;
+      });
+  };
+  const setActiveToPaypal = useCallback(setActiveState("paypal"), []);
+  const setActiveToCOD = useCallback(setActiveState("cod"), []);
+
   return (
     <Container>
       <>
         <Steps activeStep={2} />
-
         <div className="checkout__container">
           <h1 className="checkout__title">Select Payment Method</h1>
           <div className="payment__methods">
@@ -44,22 +53,12 @@ export const PaymentMethod = () => {
                 </>
               )}
               active={activeMethod === "cod"}
-              onClick={() =>
-                setActive((prev) => {
-                  if (prev !== "cod") return "cod";
-                  return prev;
-                })
-              }
+              onClick={setActiveToCOD}
             />
             <PaymentCard
               Icon={() => <PaypalSvg />}
               active={activeMethod === "paypal"}
-              onClick={() =>
-                setActive((prev) => {
-                  if (prev !== "paypal") return "paypal";
-                  return prev;
-                })
-              }
+              onClick={setActiveToPaypal}
             />
           </div>
           <div className="btn__center-container">

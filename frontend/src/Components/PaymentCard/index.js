@@ -4,9 +4,18 @@ import "./index.style.scss";
 
 export const PaymentCard = ({ Icon, active, onClick }) => {
   return (
-    <div className={`paymentcard ${active ? "active" : ""}`} onClick={onClick}>
-      <Icon />
-      {active && <i className="fas fa-check-circle"></i>}
+    <div className="paymentcard" onClick={onClick}>
+      {active && (
+        <div
+          className={`paymentcard__nactive ${
+            active ? "paymentcard__active" : ""
+          }`}
+        />
+      )}
+      <div className="paymentcard__content">
+        <Icon />
+        {active && <i className="fas fa-check-circle"></i>}
+      </div>
     </div>
   );
 };
