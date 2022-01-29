@@ -28,7 +28,6 @@ const InputComponent = ({
       onBlur(true);
     }
   };
-  console.log(fieldName, " is rendered");
   return (
     <div className="input">
       <div className="input__field-container">
