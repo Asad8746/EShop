@@ -15,7 +15,6 @@ export const HomePage = () => {
       <>
         <h1 className="home__title">Lastest Products</h1>
         <ProductList data={data} error={error} loading={loading} />
-
         <Pagination />
       </>
     </Container>

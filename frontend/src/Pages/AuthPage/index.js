@@ -12,10 +12,7 @@ export const AuthPage = () => {
   return (
     <Container>
       <div className="auth-container">
-        <div
-          className="auth__left"
-          style={{ backgroundImage: `url(/images/bg1.jpg)` }}
-        >
+        <div className="auth__left" style={{ backgroundImage: `url(/bg.jpg)` }}>
           <div className="auth__nav">
             <input
               name="active"

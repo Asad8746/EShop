@@ -6,13 +6,14 @@ import {
 } from "./constants";
 import { INIT_STATE } from "./initState";
 const productReducer = (state = INIT_STATE, action) => {
+  const { payload } = action;
   switch (action.type) {
     case setProduct:
-      return { ...state, data: action.payload };
+      return { ...state, data: payload };
     case setProductLoading:
-      return { ...state, loading: action.payload };
+      return { ...state, loading: payload };
     case setProductError:
-      return { ...state, error: action.payload };
+      return { ...state, error: payload };
     case resetProduct:
       return { ...INIT_STATE };
     default:

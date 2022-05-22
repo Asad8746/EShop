@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FullPageLoader } from "../FullPageLoader";
+import { FullPageError } from "../../Components/FullPageError";
 import { ProductCard } from "../ProductCard";
 import "./index.style.scss";
 export const ProductList = ({ loading, error, data }) => {
@@ -9,7 +10,7 @@ export const ProductList = ({ loading, error, data }) => {
       {loading ? (
         <FullPageLoader />
       ) : error ? (
-        <h3>{error}</h3>
+        <FullPageError error={error} />
       ) : data.length > 0 ? (
         data.map((item) => <ProductCard key={item._id} product={item} />)
       ) : (

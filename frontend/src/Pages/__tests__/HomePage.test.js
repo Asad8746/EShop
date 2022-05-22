@@ -1,32 +1,11 @@
 import "@testing-library/jest-dom";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
-import { render, screen, waitFor } from "@testing-library/react";
 import { HomePage } from "../HomePage";
-import { Provider } from "react-redux";
-import store from "../../store";
-const products = [
-  {
-    price: 89.99,
-    rating: 4.5,
-    stockCount: 10,
-    numReviews: 12,
-    _id: "60f2bf0d6ef96338007a2a90",
-    name: "Airpods Wireless Bluetooth Headphones",
-    image: "/images/airpods.jpg",
-    description:
-      "Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working",
-    brand: "Apple",
-    category: "Electronics",
-    user: "60f2bf0d6ef96338007a2a8d",
-    reviews: [],
-  },
-];
-const server = setupServer(
-  rest.get("http://localhost:5000/products", (req, res, ctx) => {
-    return res(ctx.json(products));
-  })
-);
+import { products, homeHandlers } from "../../mocks";
+import { customRender, screen, waitFor } from "../../test-utils";
+import domains from "../../domains";
+const server = setupServer(...homeHandlers);
 
 beforeAll(() => {
   server.listen();
@@ -39,17 +18,18 @@ afterEach(() => {
 afterAll(() => {
   server.close();
 });
+const renderHomePage = () => {
+  customRender(<HomePage />, { route: domains.home });
+};
 describe("Home Page", () => {
   it("Must show all fetched Products from Api and show it on the Screen", async () => {
-    render(
-      <Provider store={store}>
-        <HomePage />
-      </Provider>
-    );
+    renderHomePage();
     await waitFor(() => screen.getByText(products[0].name));
-    expect(screen.getByText(products[0].name)).toHaveTextContent(
-      products[0].name
-    );
+    for (let product of products) {
+      expect(
+        screen.getByRole("heading", { name: new RegExp(product.name, "i") })
+      ).toBeVisible();
+    }
   });
   it("Must show an Error if something goes wrong from Api end", async () => {
     server.use(
@@ -60,12 +40,8 @@ describe("Home Page", () => {
         );
       })
     );
-    render(
-      <Provider store={store}>
-        <HomePage />
-      </Provider>
-    );
-    await waitFor(() => screen.getByText("Oops something goes wrong"));
-    expect(screen.queryByText("Oops something goes wrong")).not.toBeNull();
+    renderHomePage();
+    await waitFor(() => screen.getByTestId("full-page-error"));
+    expect(screen.getByTestId("full-page-error")).toBeVisible();
   });
 });

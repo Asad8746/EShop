@@ -1,16 +1,26 @@
 {
-    "extends" : ["eslint:recommended","plugin:react/recommended"],
-    "parserOptions" : {
-        "ecmaVersion": 2020,
-        "ecmaFeatures": {
-            "jsx" : true
-        },
-        "sourceType" : "module"
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "rules" : {
-        "react/react-in-jsx-scope":0,
-        "no-unused-vars": 1,
-        "no-undef" : 0
-    },
-    "plugins" : ["react"]
+    "sourceType": "module"
+  },
+  "rules": {
+    "react/react-in-jsx-scope": 0,
+    "no-unused-vars": 1,
+    "no-undef": 0,
+    "testing-library/no-debugging-utils": "warn"
+  },
+  "plugins": ["react", "testing-library"],
+  "overrides": [
+    {
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+      "extends": ["plugin:testing-library/react"]
+    }
+  ]
 }

@@ -38,7 +38,6 @@ const InputComponent = ({
             id={id}
             name={fieldName}
             required={required}
-            type={type}
             value={value}
             onChange={(e) => onChange(e.target.value)}
             onBlur={onInputBlur}

@@ -3,7 +3,7 @@ import {
   setAdminOrdersError,
   resetAdminOrdersList,
   setAdminOrdersLoading,
-  setProductDeleteSuccess,
+  setOrderDeleteSuccess,
 } from "./constants";
 import { INIT_STATE } from "./initState";
 const reducer = (state = INIT_STATE, action) => {
@@ -16,7 +16,7 @@ const reducer = (state = INIT_STATE, action) => {
       return { ...state, loading: action.payload };
     case setAdminOrdersError:
       return { ...state, error: action.payload };
-    case setProductDeleteSuccess:
+    case setOrderDeleteSuccess:
       return { ...state, deleteSuccess: action.payload };
     default:
       return state;

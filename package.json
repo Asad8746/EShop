@@ -9,7 +9,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node backend/seeder.js",
     "data:delete": "node backend/seeder.js -d",
-    "test:client": "npm run test --prefix frontend",
+    "test:client": "npm run test --prefix frontend --verbose",
     "test:backend": "jest --watchAll --verbose --testPathPattern=backend/ --detectOpenHandles --coverage"
   },
   "author": "",
@@ -23,11 +23,11 @@
     "joi": "^17.4.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.2",
-    "msw": "^0.35.0",
     "redis": "^3.1.2"
   },
   "devDependencies": {
     "concurrently": "^6.2.0",
+    "cypress": "^9.5.1",
     "jest": "^26.6.0",
     "supertest": "^6.1.6"
   }

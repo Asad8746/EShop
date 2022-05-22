@@ -1,0 +1,23 @@
+@import "../../base.scss";
+.full-page-error {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  height: 60vh;
+  &__svg {
+    height: 35rem;
+    @media only screen and (max-width: $bp-detail-screen-small) {
+      height: 20rem;
+    }
+  }
+  &__message {
+    margin-top: 4rem;
+    color: var(--error-color);
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+}

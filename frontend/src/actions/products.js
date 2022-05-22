@@ -20,8 +20,11 @@ export const getProducts = (pageNumber = 1) => {
         url += `?page=${pageNumber}&pageSize=10`;
       }
       const response = await Api.get(url);
-      dispatch({ type: setProducts, payload: response.data.products });
-      dispatch({ type: setPaginationTotal, payload: response.data.totalPages });
+      dispatch({ type: setProducts, payload: response.data.products || [] });
+      dispatch({
+        type: setPaginationTotal,
+        payload: response.data.totalPages ?? 0,
+      });
     } catch (err) {
       dispatch({
         type: setProductsError,

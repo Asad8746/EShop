@@ -7,7 +7,8 @@ describe("AuthMiddleware", () => {
   let user;
   let token;
   beforeEach(() => {
-    user = User();
+    user = new User();
+    console.log("User", user);
     token = user.genToken();
     request = {
       headers: {

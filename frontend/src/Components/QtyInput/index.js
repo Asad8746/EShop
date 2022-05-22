@@ -16,11 +16,13 @@ export const QtyInput = ({
         onClick={onDecClick}
         disabled={disabled}
         className="qty-input__btn"
+        data-testid="qty__dec-button"
       >
         <i className="fas fa-minus"></i>
       </button>
       <input
         className="qty-input__field"
+        data-testid="qty-input"
         disabled={disabled}
         value={qty}
         onChange={onQtyChange}
@@ -29,6 +31,7 @@ export const QtyInput = ({
         onClick={onIncClick}
         disabled={disabled}
         className="qty-input__btn"
+        data-testid="qty__inc-button"
       >
         <i className="fas fa-plus"></i>
       </button>

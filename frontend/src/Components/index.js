@@ -27,3 +27,4 @@ export * from "./ReviewList";
 export * from "./SearchBox";
 export * from "./ProductList";
 export * from "./Pagination";
+export * from "./FullPageError";
