@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./index.style.scss";
 
-export const PaymentCard = ({ Icon, active, onClick }) => {
+export const PaymentCard = ({ Icon, active, onClick, testId }) => {
   return (
-    <div className="paymentcard" onClick={onClick}>
+    <div className="paymentcard" onClick={onClick} data-testid={testId}>
       {active && (
         <div
           className={`paymentcard__nactive ${
@@ -29,4 +29,5 @@ PaymentCard.propTypes = {
   Icon: PropTypes.func,
   active: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
+  testId: PropTypes.string,
 };

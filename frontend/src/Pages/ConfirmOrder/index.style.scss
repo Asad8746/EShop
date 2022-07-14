@@ -8,6 +8,7 @@
     margin: 3rem 0;
     @media only screen and (max-width: $bp-confirm-page-large) {
       row-gap: 1rem;
+      grid-column: 1/-1;
     }
 
     &__title {
@@ -33,6 +34,11 @@
       @media only screen and (max-width: $bp-confirm-page-large) {
         grid-column: 2/6;
       }
+      @media only screen and (max-width: $bp-confirm-page-extra-small) {
+        grid-column: 1 / -1;
+        border-top: none;
+      
+      }
       &__center-container {
         grid-column: 1 / -1;
         padding: 1.5rem 0;
@@ -57,6 +63,7 @@
         padding: 1rem 4rem;
         justify-self: start;
         text-transform: uppercase;
+        
       }
       &__value {
         grid-column: 2/3;
@@ -69,6 +76,12 @@
       padding: 2rem 4rem;
       border: var(--border);
       border-bottom: none;
+      @media only screen and (max-width: $bp-confirm-page-small) {
+        padding: 2rem;
+      }
+      @media only screen and (max-width: $bp-confirm-page-extra-small) {
+        padding: 2rem 1rem;
+      }
 
       &:last-child {
         border-bottom: var(--border);
@@ -99,6 +112,9 @@
         margin-left: 2rem;
         display: flex;
         align-items: center;
+        @media only screen and (max-width: $bp-confirm-page-large) {
+          margin-left: 1rem;
+        }
       }
     }
     &__items {
@@ -109,6 +125,11 @@
       row-gap: 1.5rem;
       align-items: center;
       justify-items: start;
+      @media only screen and (max-width: $bp-confirm-page-extra-small) {
+        margin: 0;
+        column-gap: 1.2rem;
+        row-gap: 1.2rem;
+      }
       img {
         max-height: 7rem;
         max-width: 7rem;

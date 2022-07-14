@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import {
   Container,
   Steps,
@@ -10,7 +10,8 @@ import "./index.style.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { fixedTo2 } from "../../utils/FixedDecimal";
 import { createOrder } from "../../actions";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
+import domains from "../../domains";
 export const ConfirmOrder = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -18,10 +19,22 @@ export const ConfirmOrder = () => {
   const [error, setError] = useState("");
   const cart = useSelector((store) => store.cart);
   const { address, city, postalCode, country } = cart.address;
-  const itemsTotal = cart.items.reduce(
-    (prevTotal, item) => item.qty * item.price + prevTotal,
-    0
+  const itemsTotal = useMemo(
+    () =>
+      cart.items.reduce(
+        (prevTotal, item) => item.qty * item.price + prevTotal,
+        0
+      ),
+    [cart.items.length]
   );
+  const redirectTo =
+    cart.items.length === 0
+      ? domains.cart
+      : Object.keys(cart.address).length === 0
+      ? domains.shipping
+      : !cart.paymentMethod
+      ? domains.payment
+      : "";
   const totalTax = fixedTo2(itemsTotal * 0.1);
   const shippingPrice = fixedTo2(itemsTotal >= 200 ? 0 : 100);
   const total = fixedTo2(
@@ -51,7 +64,6 @@ export const ConfirmOrder = () => {
             address: cart.address,
           },
           (errorStatus = "", id) => {
-            setLoading(false);
             if (errorStatus) {
               setError(errorStatus);
             } else {
@@ -62,6 +74,9 @@ export const ConfirmOrder = () => {
       );
     }
   };
+  if (redirectTo) {
+    return <Redirect to={redirectTo} />;
+  }
   return (
     <Container>
       <>

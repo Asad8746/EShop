@@ -15,3 +15,4 @@ export * from "./DeleteProduct";
 export * from "./SearchPage";
 export * from "./EditProfile";
 export * from "./NotFound";
+export * from "./AdminOrderPage";

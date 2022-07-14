@@ -24,6 +24,7 @@ import {
   SearchPage,
   EditProfilePage,
   NotFound,
+  AdminOrderPage,
 } from "./Pages";
 
 function App() {
@@ -87,6 +88,9 @@ function App() {
         </PrivateRoute>
         <PrivateRoute path={domains.editProfile} exact>
           <EditProfilePage />
+        </PrivateRoute>
+        <PrivateRoute path={domains.adminOrder} exact>
+          <AdminOrderPage />
         </PrivateRoute>
         {!user.isAuth && (
           <Route path={domains.auth} component={AuthPage} exact />

@@ -17,6 +17,11 @@ import {
   setAdminOrdersList,
   setAdminOrdersLoading,
   setAdminOrdersError,
+  setAdminOrder,
+  resetAdminOrder,
+  setAdminOrderLoading,
+  setAdminOrderError,
+  setPaginationTotal,
 } from "../reducers/constants";
 import returnError from "../utils/error";
 export const setAdminActiveItem = (value) => {
@@ -44,17 +49,25 @@ export const deleteUser = (id, cb = () => {}) => {
   };
 };
 
-export const getAdminProducts = () => {
+export const getAdminProducts = (pageNumber = 1, pageSize = 2) => {
   return async (dispatch, getState) => {
     try {
       if (!getState().adminProducts.loading) {
         dispatch({ type: setAdminProductsLoading, payload: true });
       }
-      const response = await Api.get("/admin/products");
-      dispatch({ type: setAdminProductsList, payload: response.data });
-      dispatch({ type: setAdminProductsLoading, payload: false });
+      const response = await Api.get(
+        `/admin/products?pageNumber=${pageNumber}&pageSize=${pageSize}`
+      );
+      const { products, totalPages } = response.data;
+      dispatch({ type: setAdminProductsList, payload: products });
+      dispatch({
+        type: setPaginationTotal,
+        payload: totalPages,
+      });
     } catch (err) {
       dispatch({ type: setAdminProductsError, payload: returnError(err) });
+    } finally {
+      dispatch({ type: setAdminProductsLoading, payload: false });
     }
   };
 };
@@ -112,9 +125,13 @@ export const createProduct = (data, cb = () => {}) => {
   };
 };
 
-export const getEditProduct = (id) => {
-  return async (dispatch) => {
+export const getEditProduct = (id, cb = () => {}) => {
+  return async (dispatch, getState) => {
     try {
+      const loading = getState()?.editProduct?.loading;
+      if (!loading) {
+        dispatch({ type: setEditProductLoading, payload: true });
+      }
       const response = await Api.get(`/products/${id}`);
       const data = response.data;
       dispatch({
@@ -129,9 +146,33 @@ export const getEditProduct = (id) => {
         },
       });
     } catch (err) {
-      dispatch({ type: setEditProductError, payload: returnError(err) });
+      cb(returnError(err));
     } finally {
       dispatch({ type: setEditProductLoading, payload: false });
+    }
+  };
+};
+export const getAdminOrderDetail = (id) => {
+  // setAdminOrder,
+  // resetAdminOrderList,
+  // setAdminOrderLoading,
+  // setAdminOrderError,
+  return async (dispatch, getState) => {
+    try {
+      const loading = getState()?.adminOrder?.loading;
+      if (!loading) {
+        dispatch({ type: setAdminOrderLoading, payload: true });
+      }
+      const response = await Api.get(`/admin/orders/${id}`);
+      const order = response.data;
+      dispatch({
+        type: setAdminOrder,
+        payload: order,
+      });
+    } catch (err) {
+      dispatch({ type: setAdminOrderError, payload: returnError(err) });
+    } finally {
+      dispatch({ type: setAdminOrderLoading, payload: false });
     }
   };
 };
@@ -166,14 +207,19 @@ export const updateProduct = (id, data, cb = () => {}) => {
   };
 };
 
-export const getAdminOrders = () => {
+export const getAdminOrders = (pageNumber = 1, pageSize = 10) => {
   return async (dispatch, getState) => {
     try {
+      let url = "/admin/orders";
       if (!getState().adminOrders.loading) {
         dispatch({ type: setAdminOrdersLoading, payload: true });
       }
-      const response = await Api.get("/admin/orders");
-      dispatch({ type: setAdminOrdersList, payload: response.data });
+      if (pageNumber || pageSize) {
+        url += `?page=${pageNumber}&pageSize=${pageSize}`;
+      }
+      const response = await Api.get(url);
+      dispatch({ type: setAdminOrdersList, payload: response.data.orders });
+      dispatch({ type: setPaginationTotal, payload: response.data.totalPages });
     } catch (err) {
       dispatch({ type: setAdminOrdersError, payload: returnError(err) });
     } finally {
@@ -182,6 +228,10 @@ export const getAdminOrders = () => {
   };
 };
 export const markOrder = async (id, data, cb) => {
-  const response = await Api.patch(`/admin/orders/${id}`, data);
-  cb(response.data);
+  try {
+    const response = await Api.patch(`/admin/orders/${id}`, data);
+    cb(response.data);
+  } catch (err) {
+    cb(null, returnError(err));
+  }
 };

@@ -1,10 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FullPageLoader } from "../FullPageLoader";
-import { FullPageError } from "../../Components/FullPageError";
+import { FullPageError } from "../FullPageError";
 import { ProductCard } from "../ProductCard";
+import { EmptyContainer } from "../EmptyContainer";
 import "./index.style.scss";
-export const ProductList = ({ loading, error, data }) => {
+export const ProductList = ({
+  loading,
+  error,
+  data,
+  showActions,
+  moveForward,
+}) => {
   return (
     <div className="products-container">
       {loading ? (
@@ -12,16 +19,30 @@ export const ProductList = ({ loading, error, data }) => {
       ) : error ? (
         <FullPageError error={error} />
       ) : data.length > 0 ? (
-        data.map((item) => <ProductCard key={item._id} product={item} />)
+        data.map((item) => (
+          <ProductCard
+            key={item._id}
+            product={item}
+            showActions={showActions}
+            moveForward={moveForward}
+          />
+        ))
       ) : (
-        <div className="products__empty-message">No Products Found</div>
+        <EmptyContainer message="no Products Found" />
       )}
     </div>
   );
 };
 
+ProductList.defaultProps = {
+  showActions: false,
+  moveForward: true,
+};
+
 ProductList.propTypes = {
+  moveForward: PropTypes.bool,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
+  showActions: PropTypes.bool.isRequired,
 };

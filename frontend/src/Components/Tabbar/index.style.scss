@@ -1,9 +1,11 @@
+@import "../../base.scss";
 .admin {
   &__tabbar {
-    grid-column: center-start / center-end;
     display: flex;
     background-color: var(--tertiary-color);
-
+    @media only screen and (max-width:$bp-admin-page-large) {
+      flex-direction: column;
+    }
     &-item {
       flex: 1;
       display: flex;
@@ -17,6 +19,10 @@
       border-top: 0.4rem solid var(--tertiary-color);
       &--active {
         border-top: 0.4rem solid var(--secondary-color);
+        @media only screen and (max-width:$bp-admin-page-large) {
+          border: none;
+          background-color: #b90e1c;
+        }
       }
       .tab-item__content {
         display: flex;

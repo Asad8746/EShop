@@ -1,0 +1,13 @@
+@import "../../base.scss";
+.admin-order {
+    margin: 1rem 0;
+    grid: 1/-1;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, 55rem);
+    justify-content: center;
+    @media only screen and (max-width: $bp-orders-page-extra-small) {
+    grid-template-columns: 1fr;
+    }  
+
+}

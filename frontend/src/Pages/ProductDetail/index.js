@@ -34,12 +34,14 @@ export const ProductDetail = () => {
     };
   }, [dispatch, params.id]);
   useEffect(() => {
-    if (String(qty).match(/\D/g)) {
-      setError("Please Enter Numeric Value");
-    } else if (qty <= 0 || qty > data.stockCount) {
-      setError(`Please Enter Qty between 1 and ${data.stockCount}`);
-    } else {
-      setError("");
+    if (data.stockCount !== 0) {
+      if (String(qty).match(/\D/g)) {
+        setError("Please Enter Numeric Value");
+      } else if (qty <= 0 || qty > data.stockCount) {
+        setError(`Please Enter Qty between 1 and ${data.stockCount}`);
+      } else {
+        setError("");
+      }
     }
   }, [qty, setError, data.stockCount]);
   const onQtyChange = (e) => {

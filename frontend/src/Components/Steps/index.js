@@ -12,7 +12,6 @@ const steps = [
 export const Steps = ({ activeStep }) => {
   return (
     <div className="steps">
-      {/* <div className="line" /> */}
       {steps.map((item, idx) => {
         return (
           <Link

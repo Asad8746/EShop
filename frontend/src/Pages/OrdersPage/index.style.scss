@@ -1,8 +1,12 @@
+@import "../../base.scss";
 .orders {
   grid-column: center-start / center-end;
   margin: 2rem 0;
   display: grid;
   grid-template-columns: repeat(auto-fit, 55rem);
+  @media only screen and (max-width: $bp-orders-page-extra-small) {
+    grid-template-columns: 1fr;
+  }
   justify-content: center;
   row-gap: 2rem;
   column-gap: 2rem;
@@ -10,12 +14,6 @@
     grid-row: 1/2;
     grid-column: 1/-1;
     text-align: center;
-  }
-  &__empty {
-    grid-column: 1 / -1;
-    text-align: center;
-    font-size: 1.4rem;
-    font-weight: 500;
   }
   &__line {
     background-color: rgba(0, 0, 0, 0.1);

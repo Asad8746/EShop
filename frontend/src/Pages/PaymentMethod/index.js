@@ -54,11 +54,13 @@ export const PaymentMethod = () => {
               )}
               active={activeMethod === "cod"}
               onClick={setActiveToCOD}
+              testId="cod"
             />
             <PaymentCard
               Icon={() => <PaypalSvg />}
               active={activeMethod === "paypal"}
               onClick={setActiveToPaypal}
+              testId="paypal"
             />
           </div>
           <div className="btn__center-container">

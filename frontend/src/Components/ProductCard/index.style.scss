@@ -4,7 +4,9 @@
   color: var(--primary-color);
   display: block;
   text-align: center;
-  cursor: pointer;
+  &--link {
+    cursor: pointer;
+  }
 
   &__image {
     width: 100%;
@@ -20,4 +22,13 @@
     font-weight: 500;
     color: var(--tertiary-color);
   }
+  &__actions {
+    padding: 1rem 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 1rem;
+    transition: background-color 0.5s ease-out;
+  }
+ 
 }

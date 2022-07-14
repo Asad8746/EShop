@@ -8,7 +8,7 @@ export const HomePage = () => {
   const { data, loading, error } = useSelector((state) => state.products);
   const pagination = useSelector((store) => store.pagination);
   useEffect(() => {
-    dispatch(getProducts(pagination.currentPage));
+    dispatch(getProducts(pagination.currentPage, pagination.pageSize));
   }, [pagination.currentPage]);
   return (
     <Container>

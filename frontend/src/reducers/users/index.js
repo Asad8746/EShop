@@ -17,7 +17,6 @@ const reducer = (state = INIT_STATE, action) => {
     case setUsersError:
       return { ...state, error: action.payload };
     case setUserDeleteSuccess:
-      console.log("I am called");
       return { ...state, deleteSuccess: action.payload };
     default:
       return state;

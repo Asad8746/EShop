@@ -24,7 +24,8 @@ const renderHomePage = () => {
 describe("Home Page", () => {
   it("Must show all fetched Products from Api and show it on the Screen", async () => {
     renderHomePage();
-    await waitFor(() => screen.getByText(products[0].name));
+    // await waitFor(() => screen.getByText(products[0].name));
+    await screen.findByText(products[0].name);
     for (let product of products) {
       expect(
         screen.getByRole("heading", { name: new RegExp(product.name, "i") })
@@ -41,7 +42,8 @@ describe("Home Page", () => {
       })
     );
     renderHomePage();
-    await waitFor(() => screen.getByTestId("full-page-error"));
+
+    await screen.findAllByTestId("full-page-error");
     expect(screen.getByTestId("full-page-error")).toBeVisible();
   });
 });

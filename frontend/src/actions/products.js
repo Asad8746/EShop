@@ -9,7 +9,7 @@ import {
   setPaginationTotal,
 } from "../reducers/constants";
 import returnError from "../utils/error";
-export const getProducts = (pageNumber = 1) => {
+export const getProducts = (pageNumber = 1, pageSize = 10) => {
   return async (dispatch, getState) => {
     try {
       if (!getState().products.loading) {
@@ -17,7 +17,7 @@ export const getProducts = (pageNumber = 1) => {
       }
       let url = "/products";
       if (pageNumber) {
-        url += `?page=${pageNumber}&pageSize=10`;
+        url += `?page=${pageNumber}&pageSize=${pageSize}`;
       }
       const response = await Api.get(url);
       dispatch({ type: setProducts, payload: response.data.products || [] });

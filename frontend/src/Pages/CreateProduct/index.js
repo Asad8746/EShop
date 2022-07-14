@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { ProductForm } from "../../Components";
-import { createProduct } from "../../actions";
+import { createProduct, setAdminActiveItem } from "../../actions";
 
 export const CreateProductPage = () => {
   const data = useSelector((store) => store.createProduct);
@@ -11,7 +11,8 @@ export const CreateProductPage = () => {
   const onFormSubmit = (data) => {
     dispatch(
       createProduct(data, () => {
-        history.goBack();
+        dispatch(setAdminActiveItem("products"));
+        history.push("/admin");
       })
     );
   };

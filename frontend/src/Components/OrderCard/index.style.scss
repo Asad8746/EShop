@@ -1,3 +1,4 @@
+@import "../../base.scss";
 .order-card {
   padding: 1rem 1.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
@@ -5,13 +6,45 @@
   border-radius: 1rem;
   text-decoration: none;
   color: var(--font-color);
+  position: relative;
+  cursor: pointer;
+  @media only screen and (max-width: $bp-orders-page-extra-small) {
+    padding: 1rem 0;
+  }
+
+
+  &__loader-container{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top:0;
+    background-color: rgba(183, 182, 182, 0.1);
+
+  }
   &__status-container {
     display: flex;
     column-gap: 0.5rem;
     margin-left: auto;
+    &--small-screen {
+      display: none;
+      @media only screen and (max-width: $bp-orders-page-extra-small) {
+        display: flex;
+        column-gap: 1rem;
+        justify-content: flex-start;
+        margin: 1rem 0;
+        margin-left: 1rem;
+        align-items: center;
+      } 
+    }
+    &--large-screen {
+      @media only screen and (max-width: $bp-orders-page-extra-small) {
+        display: none;
+      } 
+    }
   }
   &__status {
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.2rem;
     font-size: 1.1rem;
     display: flex;
     justify-content: center;
@@ -53,6 +86,26 @@
       letter-spacing: 1px;
       margin: 0;
       padding: 0;
+    }
+  }
+  &__actions {
+  padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 1rem;
+    @media only screen and (max-width: $bp-orders-page-extra-small) {
+      flex-direction: column;
+    } 
+    &-heading {
+      margin-right: auto;
+      font-size: 1.5rem;
+    }
+    &-btns {
+      display: flex;
+      justify-content: center;
+      column-gap: 1rem;
+      align-self: flex-end;
     }
   }
 }

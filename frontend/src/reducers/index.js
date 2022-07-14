@@ -17,6 +17,7 @@ import reviews from "./reviews";
 import search from "./search";
 import pagination from "./pagination";
 import editProfile from "./editProfile";
+import adminOrder from "./adminOrder";
 export default combineReducers({
   products,
   product,
@@ -36,4 +37,5 @@ export default combineReducers({
   search,
   pagination,
   editProfile,
+  adminOrder,
 });

@@ -1,7 +1,10 @@
+@import "../../base.scss";
 .admin {
   grid-column: center-start / center-end;
-  //   background-color: blue;
-  //   display: flex;
+  
+  @media only screen and (max-width: $bp-orders-page-extra-small) {
+      grid-column: full-start / full-end;
+  } 
   &__content {
     flex: 1;
   }

@@ -1,0 +1,33 @@
+.order {
+    &__loader-container {
+      padding: 4rem;
+      grid-column: center-start / center-end;
+    }
+    &__custom {
+      &-success {
+        padding: 1.5rem;
+      }
+  
+      &-error {
+        background-color: rgba(255, 0, 0, 0.1);
+        padding: 1.5rem;
+        color: rgb(187, 8, 8);
+      }
+    }
+    &__paid-status {
+      color: green;
+      background-color: rgba(5, 250, 5, 0.1);
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+    }
+    &__not-paid-status {
+      color: rgb(187, 8, 8);
+      background-color: rgba(255, 0, 0, 0.1);
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+    }
+    h4 {
+      margin: 0;
+    }
+  }
+  

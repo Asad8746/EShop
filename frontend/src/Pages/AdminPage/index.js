@@ -4,8 +4,8 @@ import {
   Container,
   Tabbar,
   UsersList,
-  ProductsTable,
-  OrderTable,
+  ProductSection,
+  OrderSection,
 } from "../../Components";
 import "./index.style.scss";
 export const AdminPage = () => {
@@ -14,9 +14,9 @@ export const AdminPage = () => {
     if (activeItem === "users") {
       return <UsersList />;
     } else if (activeItem === "products") {
-      return <ProductsTable />;
+      return <ProductSection />;
     } else if (activeItem === "orders") {
-      return <OrderTable />;
+      return <OrderSection />;
     }
   };
   return (

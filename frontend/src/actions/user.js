@@ -70,6 +70,8 @@ export const registerUser = (data, cb = () => {}) => {
     try {
       dispatch({ type: setSignupLoading, payload: true });
       const response = await Api.post("/user/register", data);
+      const token = `Bearer ${response.headers["authorization"]}`;
+      localStorage.setItem("authorization", token);
       dispatch({ type: setUserAndAuth, payload: response.data });
       if (getState().signup.error.length > 0) {
         dispatch({ type: setSignupError, payload: "" });

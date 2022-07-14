@@ -10,8 +10,7 @@
   "rules": {
     "react/react-in-jsx-scope": 0,
     "no-unused-vars": 1,
-    "no-undef": 0,
-    "testing-library/no-debugging-utils": "warn"
+    "no-undef": 0
   },
   "plugins": ["react", "testing-library"],
   "overrides": [

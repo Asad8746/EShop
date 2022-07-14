@@ -11,21 +11,25 @@
   &__error {
     grid-column: 1 / -1;
   }
-  &__back-link:link {
+  &__back-link:link,&__back-link:visited {
     position: absolute;
-    top: 20px;
-    left: 30px;
+    top: 2rem;
+    left: 3rem;
     text-decoration: none;
-    font-size: 21px;
+    font-size: 2.1rem;
     z-index: 10000;
-
+    cursor: pointer;
     i : {
       color: var(--primary-color);
     }
   }
   &__img-container {
+    position: relative;
     grid-column: 1/ 5;
     grid-row: 1/2;
+    outline: 2px solid rgb(235, 232, 232);
+    border-radius: .5rem;
+    overflow: hidden;
     @media only screen and (max-width: $bp-detail-screen-large) {
       grid-column: 1/-1;
     }
