@@ -17,12 +17,12 @@ module.exports = function (app) {
     })
   );
   app.use(express.json());
-  app.use("/products", productsRouter);
-  app.use("/user", userRouter);
-  app.use("/orders", orderRouter);
-  app.use("/config", configRouter);
-  app.use("/admin", adminRouter);
-  app.use("/image", imageRouter);
+  app.use("/api/products", productsRouter);
+  app.use("/api/user", userRouter);
+  app.use("/api/orders", orderRouter);
+  app.use("/api/config", configRouter);
+  app.use("/api/admin", adminRouter);
+  app.use("/api/image", imageRouter);
   app.use(notFoundMiddleware);
   app.use(errorMiddleware);
 };

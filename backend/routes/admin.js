@@ -64,11 +64,20 @@ router.get(
   "/products",
   [auth, admin],
   asyncMiddleware(async (req, res) => {
+    const query = req.query;
+    const pageSize = Number(query.pageSize) || 10;
+    const page = Number(query.pageNumber) || 1;
     const products = await Product.find()
-      .select("-reviews -rating -numReviews -description")
-      .populate("user", "_id email");
-
-    res.status(200).send(products);
+      .select("-reviews -numReviews -description")
+      .populate("user", "_id email")
+      .limit(pageSize)
+      .skip(pageSize * (Number(page) - 1));
+    const total = await Product.estimatedDocumentCount();
+    res.send({
+      products,
+      page,
+      totalPages: Math.ceil(total / pageSize),
+    });
   })
 );
 router.post(
@@ -126,7 +135,7 @@ router.patch(
       res.status(404);
       throw new Error(`Product with id ${id} not found`);
     }
-    product.name = req.body.name || product.name;
+    product.name = req.body.productName || product.name;
     product.description = req.body.description || product.description;
     product.brand = req.body.brand || product.brand;
     product.category = req.body.category || product.category;
@@ -142,9 +151,8 @@ router.patch(
       product.image = image._id;
       await image.save();
     }
-
     await product.save();
-    res.status(201).send(product);
+    res.status(200).send(product);
   })
 );
 router.delete(
@@ -166,13 +174,35 @@ router.get(
   "/orders",
   [auth, admin],
   asyncMiddleware(async (req, res) => {
+    const query = req?.query;
+    const pageSize = Number(query.pageSize) || 1;
+    const page = Number(query.page) || 1;
+    const total = await Order.estimatedDocumentCount();
     const orders = await Order.find()
       .select("-orderItems -shippingAddress -tax_price")
-      .populate("user", "_id name");
-    res.status(200).send(orders);
+      .populate("user", "_id name")
+      .limit(pageSize)
+      .skip(pageSize * Number(page - 1))
+      .sort("-createdAt");
+    res.status(200).send({ totalPages: Math.ceil(total / pageSize), orders });
   })
 );
-
+router.get(
+  "/orders/:id",
+  [validObjectId, auth, admin],
+  asyncMiddleware(async (req, res) => {
+    const orderId = req.params?.id || "";
+    const order = await Order.findById(orderId).populate(
+      "user",
+      "_id name email"
+    );
+    if (!order) {
+      res.status(404);
+      throw new Error("Oops Order not found");
+    }
+    res.status(200).send(order);
+  })
+);
 router.patch(
   "/orders/:id",
   [validObjectId, auth, admin, deleteCache],

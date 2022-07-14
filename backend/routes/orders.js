@@ -7,6 +7,7 @@ const deleteCache = require("../middleware/deleteCache");
 const validateObjectId = require("../middleware/validObjectId");
 const { validateOrderBody } = require("../validation/order");
 const fixedTo2 = require("../utils/fixedTo2");
+const Product = require("../models/Product");
 
 router.get(
   "/",
@@ -18,7 +19,7 @@ router.get(
       .select(
         "_id isDelivered isPaid deliveredAt paidAt total_price createdAt paymentMethod"
       )
-      .sort({ paidAt: -1 })
+      .sort({ createdAt: -1 })
       .cache({ key: req.user });
     res.status(200).send(orders);
   })
@@ -49,7 +50,8 @@ router.post(
       res.status(400);
       throw new Error(error.details[0].message);
     }
-    const itemsTotal = req.body.items.reduce(
+    const orderItems = req.body.items;
+    const itemsTotal = orderItems.reduce(
       (prevRes, item) => item.qty * item.price + prevRes,
       0
     );
@@ -58,6 +60,14 @@ router.post(
     const total = fixedTo2(
       Number(itemsTotal) + Number(tax) + Number(shippingPrice)
     );
+    orderItems.forEach(async (product) => {
+      const increment = product.qty * -1;
+      await Product.findByIdAndUpdate(
+        product.id,
+        { $inc: { stockCount: increment } },
+        { useFindAndModify: false }
+      );
+    });
     const order = new OrderModel({
       user: req.user,
       orderItems: req.body.items,
