@@ -1,0 +1,33 @@
+{
+  "users": [
+    {
+      "name": "Asad khan",
+      "email": "asad@gmail.com",
+      "password": "12345",
+      "confirmPassword": "12345"
+    },
+    {
+      "name": "Sangeen khan",
+      "email": "sangeen@gmail.com",
+      "password": "12345",
+      "confirmPassword": "12345"
+    },
+    {
+      "name": "NOT_Registered_User",
+      "email": "not_registered@gmail.com",
+      "password": "12345"
+    }
+  ],
+  "user": {
+    "name": "Test User",
+    "email": "test@gmail.com",
+    "password": "test1234",
+    "confirmPassword": "test1234"
+  },
+  "shippingAddress": {
+    "address": "Some Test Address",
+    "city": "World",
+    "postalCode": "14052",
+    "country": "Space"
+  }
+}

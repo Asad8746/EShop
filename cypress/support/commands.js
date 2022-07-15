@@ -23,3 +23,21 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import "@testing-library/cypress/add-commands";
+import "cypress-file-upload";
+import "./order";
+import "./user";
+import "./product";
+Cypress.Commands.add("importData", () => {
+  cy.exec("npm run data:import");
+});
+Cypress.Commands.add("deleteData", () => {
+  cy.exec("npm run data:delete");
+});
+
+Cypress.Commands.add("__init", () => {
+  cy.importData();
+  cy.getUsersFixture();
+  cy.getProductsFixture();
+  cy.login();
+});

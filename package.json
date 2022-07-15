@@ -7,10 +7,13 @@
     "server": "nodemon backend/index.js",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev:test": "export NODE_ENV=test && concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node backend/seeder.js",
     "data:delete": "node backend/seeder.js -d",
     "test:client": "npm run test --prefix frontend --verbose",
-    "test:backend": "jest --watchAll --verbose --testPathPattern=backend/ --detectOpenHandles --coverage"
+    "test:backend": "jest --watchAll --verbose --testPathPattern=backend/ --detectOpenHandles --coverage",
+    "test:cypress": "cypress open",
+    "test:E-E": "concurrently \"npm run dev:test\" \"npm run test:cypress\""
   },
   "author": "",
   "license": "ISC",
@@ -26,8 +29,10 @@
     "redis": "^3.1.2"
   },
   "devDependencies": {
+    "@testing-library/cypress": "^8.0.3",
     "concurrently": "^6.2.0",
-    "cypress": "^9.5.1",
+    "cypress": "^10.1.0",
+    "cypress-file-upload": "^5.0.8",
     "jest": "^26.6.0",
     "supertest": "^6.1.6"
   }
