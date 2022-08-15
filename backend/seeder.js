@@ -6,6 +6,7 @@ const Image = require("./models/Image");
 const products = require("./products");
 const users = require("./users");
 const orders = require("./order");
+const config = require("config");
 
 const importOrDeleteData = async (delFlag = false) => {
   try {

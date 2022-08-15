@@ -1,0 +1,6 @@
+{
+  "mongoUri": "",
+  "secretKey": "",
+  "redisURL": "",
+  "paypalId": ""
+}

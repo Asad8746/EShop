@@ -5,6 +5,9 @@
 /frontend/node_modules/
 /.pnp
 .pnp.js
+backend/config/development.json
+backend/config/test.json
+
 
 # testing
 /coverage

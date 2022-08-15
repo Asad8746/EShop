@@ -30,8 +30,7 @@ export const resetReviewsAction = () => {
 export const saveReview = (id, body = {}, cb) => {
   return async (dispatch) => {
     try {
-      const response = await Api.post(`/products/${id}/rate`, body);
-      console.log(response.data);
+      await Api.post(`/products/${id}/rate`, body);
       dispatch({ type: setReviewSaveSuccess, payload: true });
     } catch (err) {
       cb(returnError(err));

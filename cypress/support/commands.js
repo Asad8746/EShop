@@ -29,10 +29,10 @@ import "./order";
 import "./user";
 import "./product";
 Cypress.Commands.add("importData", () => {
-  cy.exec("npm run data:import");
+  cy.exec("npm run data:import:test");
 });
 Cypress.Commands.add("deleteData", () => {
-  cy.exec("npm run data:delete");
+  cy.exec("npm run data:delete:test");
 });
 
 Cypress.Commands.add("__init", () => {

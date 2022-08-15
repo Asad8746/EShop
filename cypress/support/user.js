@@ -24,7 +24,6 @@ Cypress.Commands.add(
   "login",
   function (email = "", password = "", populateContext = false) {
     const user = this.users[0];
-    console.log(password);
     cy.request("POST", "/api/user/login", {
       email: email || user.email,
       password: password || user.password,

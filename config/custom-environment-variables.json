@@ -1,0 +1,7 @@
+{
+  "mongoUri": "mongoURI",
+  "secretKey": "secretKEY",
+  "clientUrl": "clientURL",
+  "redisURL": "redisURL",
+  "paypalId": "paypalPublicID"
+}

@@ -8,6 +8,5 @@ const PORT = process.env.PORT || 5000;
 const server = App.listen(PORT, () => {
   console.log(`Connected on Port ${PORT} `);
 });
-console.log("ENV", process.env.NODE_ENV);
 
 module.exports = server;

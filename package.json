@@ -7,13 +7,14 @@
     "server": "nodemon backend/index.js",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "dev:test": "export NODE_ENV=test && concurrently \"npm run server\" \"npm run client\"",
+    "dev:test": "export NODE_ENV=test && export BROWSER=none &&concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node backend/seeder.js",
     "data:delete": "node backend/seeder.js -d",
+    "data:import:test": "export NODE_ENV=test && node backend/seeder.js",
+    "data:delete:test": "export NODE_ENV=test && node backend/seeder.js -d",
     "test:client": "npm run test --prefix frontend --verbose",
     "test:backend": "jest --watchAll --verbose --testPathPattern=backend/ --detectOpenHandles --coverage",
-    "test:cypress": "cypress open",
-    "test:E-E": "concurrently \"npm run dev:test\" \"npm run test:cypress\""
+    "test:cypress": "concurrently \"npx cypress open\" \"npm run dev:test\""
   },
   "author": "",
   "license": "ISC",
