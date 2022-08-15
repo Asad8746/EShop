@@ -5,8 +5,8 @@
 /frontend/node_modules/
 /.pnp
 .pnp.js
-backend/config/development.json
-backend/config/test.json
+config/development.json
+config/test.json
 
 
 # testing
@@ -14,7 +14,7 @@ backend/config/test.json
 
 # production
 /build
-
+*/build
 # misc
 .DS_Store
 .env.local

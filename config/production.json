@@ -1,6 +1,6 @@
 {
-  "mongoUri": "",
-  "secretKey": "",
-  "redisURL": "",
-  "paypalId": ""
+  "mongoUri": "mongodb://localhost/EShop",
+  "secretKey": "secretKey@123",
+  "clientUrl": "http://localhost:3000",
+  "redisURL": "redis://127.0.0.1:6379"
 }

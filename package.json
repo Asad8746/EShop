@@ -1,10 +1,11 @@
 {
-  "name": "backend",
+  "name": "eshop",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon backend/index.js",
+    "start": "node index.js",
+    "server": "nodemon index.js",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "dev:test": "export NODE_ENV=test && export BROWSER=none &&concurrently \"npm run server\" \"npm run client\"",
